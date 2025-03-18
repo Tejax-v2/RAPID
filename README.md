@@ -1,6 +1,12 @@
-# Clustering Algorithms for Image Embeddings
+# Retail Analytics and Product Recognition using Deep learning
 
 This repository contains two methods for clustering objects detected in images using deep learning-based feature embeddings.
+
+## Reference Papers
+
+- [A deep learning pipeline for product recognition on store shelves](https://arxiv.org/abs/1810.01733v1)
+- [One-Shot Retail Product Identification Based on Improved
+Siamese Neural Networks](https://link.springer.com/article/10.1007/s00034-022-02062-y)
 
 ## Methods
 
