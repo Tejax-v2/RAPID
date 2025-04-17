@@ -1,0 +1,848 @@
+2025-04-10 03:05:50,934 | INFO | Training started.
+2025-04-10 07:11:43,243 | INFO | Training finished.
+2025-04-10 07:11:43,243 | INFO | No mAP metric available to evaluate performance. Check training results for issues.
+
+(venv) PS D:\Python\BTP\version1> python .\my_code.py
+New https://pypi.org/project/ultralytics/8.3.105 available 😃 Update with 'pip install -U ultralytics'
+Ultralytics 8.3.89 🚀 Python-3.10.0 torch-2.6.0+cu126 CUDA:0 (NVIDIA GeForce RTX 4050 Laptop GPU, 6140MiB)
+engine\trainer: task=detect, mode=train, model=yolov10n.pt, data=configs/data.yaml, epochs=20, time=None, patience=10, batch=8, imgsz=640, save=True, save_period=1, cache=False, device=cuda, workers=8, project=None, name=train, exist_ok=False, pretrained=True, optimizer=auto, verbose=True, seed=0, deterministic=True, single_cls=False, rect=False, cos_lr=False, close_mosaic=10, resume=False, amp=True, fraction=1.0, profile=False, freeze=None, multi_scale=False, overlap_mask=True, mask_ratio=4, dropout=0.0, val=True, split=val, save_json=False, save_hybrid=False, conf=None, iou=0.7, max_det=300, half=False, dnn=False, plots=True, source=None, vid_stride=1, stream_buffer=False, visualize=False, augment=False, agnostic_nms=False, classes=None, retina_masks=False, embed=None, show=False, save_frames=False, save_txt=False, save_conf=False, save_crop=False, show_labels=True, show_conf=True, show_boxes=True, line_width=None, format=torchscript, keras=False, optimize=False, int8=False, dynamic=False, simplify=True, opset=None, workspace=None, nms=False, lr0=0.01, lrf=0.01, momentum=0.937, weight_decay=0.0005, warmup_epochs=3.0, warmup_momentum=0.8, warmup_bias_lr=0.1, box=7.5, cls=0.5, dfl=1.5, pose=12.0, kobj=1.0, nbs=64, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, degrees=0.0, translate=0.1, scale=0.5, shear=0.0, perspective=0.0, flipud=0.0, fliplr=0.5, bgr=0.0, mosaic=1.0, mixup=0.0, copy_paste=0.0, copy_paste_mode=flip, auto_augment=randaugment, erasing=0.4, crop_fraction=1.0, cfg=None, tracker=botsort.yaml, save_dir=runs\detect\train
+Overriding model.yaml nc=80 with nc=1
+
+                   from  n    params  module                                       arguments
+  0                  -1  1       464  ultralytics.nn.modules.conv.Conv             [3, 16, 3, 2]
+  1                  -1  1      4672  ultralytics.nn.modules.conv.Conv             [16, 32, 3, 2]
+  2                  -1  1      7360  ultralytics.nn.modules.block.C2f             [32, 32, 1, True]
+  3                  -1  1     18560  ultralytics.nn.modules.conv.Conv             [32, 64, 3, 2]
+  4                  -1  2     49664  ultralytics.nn.modules.block.C2f             [64, 64, 2, True]
+  5                  -1  1      9856  ultralytics.nn.modules.block.SCDown          [64, 128, 3, 2]
+  6                  -1  2    197632  ultralytics.nn.modules.block.C2f             [128, 128, 2, True]
+  7                  -1  1     36096  ultralytics.nn.modules.block.SCDown          [128, 256, 3, 2]
+  8                  -1  1    460288  ultralytics.nn.modules.block.C2f             [256, 256, 1, True]
+  9                  -1  1    164608  ultralytics.nn.modules.block.SPPF            [256, 256, 5]
+ 10                  -1  1    249728  ultralytics.nn.modules.block.PSA             [256, 256]
+ 11                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']
+ 12             [-1, 6]  1         0  ultralytics.nn.modules.conv.Concat           [1]
+ 13                  -1  1    148224  ultralytics.nn.modules.block.C2f             [384, 128, 1]
+ 14                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']
+ 15             [-1, 4]  1         0  ultralytics.nn.modules.conv.Concat           [1]
+ 16                  -1  1     37248  ultralytics.nn.modules.block.C2f             [192, 64, 1]
+ 17                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]
+ 18            [-1, 13]  1         0  ultralytics.nn.modules.conv.Concat           [1]
+ 19                  -1  1    123648  ultralytics.nn.modules.block.C2f             [192, 128, 1]
+ 20                  -1  1     18048  ultralytics.nn.modules.block.SCDown          [128, 128, 3, 2]
+ 21            [-1, 10]  1         0  ultralytics.nn.modules.conv.Concat           [1]
+ 22                  -1  1    282624  ultralytics.nn.modules.block.C2fCIB          [384, 256, 1, True, True]
+ 23        [16, 19, 22]  1    861718  ultralytics.nn.modules.head.v10Detect        [1, [64, 128, 256]]
+YOLOv10n summary: 223 layers, 2,707,430 parameters, 2,707,414 gradients, 8.4 GFLOPs
+
+Transferred 493/595 items from pretrained weights
+TensorBoard: Start with 'tensorboard --logdir runs\detect\train', view at http://localhost:6006/
+Freezing layer 'model.23.dfl.conv.weight'
+AMP: running Automatic Mixed Precision (AMP) checks...
+AMP: checks passed ✅
+train: Scanning D:\Python\BTP\SKU110K_fixed\labels\train.cache... 8216 images, 0 backgrounds, 3 corrupt: 100%|██████████| 8219/8219 [00:00<?, ?it/s]
+train: WARNING ⚠️ D:\Python\BTP\SKU110K_fixed\images\train\train_1797.jpg: 3 duplicate labels removed
+train: WARNING ⚠️ D:\Python\BTP\SKU110K_fixed\images\train\train_4222.jpg: ignoring corrupt image/label: image file is truncated (23 bytes not processed)
+train: WARNING ⚠️ D:\Python\BTP\SKU110K_fixed\images\train\train_882.jpg: ignoring corrupt image/label: image file is truncated (3 bytes not processed)
+train: WARNING ⚠️ D:\Python\BTP\SKU110K_fixed\images\train\train_924.jpg: ignoring corrupt image/label: image file is truncated (10 bytes not processed)
+val: Scanning D:\Python\BTP\SKU110K_fixed\labels\val.cache... 588 images, 0 backgrounds, 0 corrupt: 100%|██████████| 588/588 [00:00<?, ?it/s]
+Corrupt JPEG data: 366 extraneous bytes before marker 0xd9
+Corrupt JPEG data: 305 extraneous bytes before marker 0xd9
+Corrupt JPEG data: 786 extraneous bytes before marker 0xd9
+Plotting labels to runs\detect\train\labels.jpg...
+Corrupt JPEG data: premature end of data segment
+optimizer: 'optimizer=auto' found, ignoring 'lr0=0.01' and 'momentum=0.937' and determining best 'optimizer', 'lr0' and 'momentum' automatically...
+optimizer: AdamW(lr=0.002, momentum=0.9) with parameter groups 95 weight(decay=0.0), 108 weight(decay=0.0005), 107 bias(decay=0.0)
+TensorBoard: model graph visualization added ✅
+Image sizes 640 train, 640 val
+Using 8 dataloader workers
+Logging results to runs\detect\train
+Starting training for 20 epochs...
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       1/20      4.78G      5.253      7.191      3.059       1892        640:   4%|▎         | 37/1027 [00:15<06:14,  2.65it/s]Corrupt JPEG data: premature end of data segment
+       1/20      4.78G      4.831      6.929      2.845       1952        640:   6%|▋         | 65/1027 [00:26<05:47,  2.77it/s]Corrupt JPEG data: 562 extraneous bytes before marker 0xd9
+       1/20      6.13G      4.499      6.479       2.65       2088        640:  10%|█         | 103/1027 [00:48<14:00,  1.10it/s]Corrupt JPEG data: 10773 extraneous bytes before marker 0xd9
+       1/20      6.13G      4.407       6.24      2.582       1871        640:  12%|█▏        | 122/1027 [00:55<05:46,  2.61it/s]Corrupt JPEG data: 520 extraneous bytes before marker 0xd9
+       1/20      6.92G      4.374      6.132      2.559       1499        640:  13%|█▎        | 130/1027 [01:04<07:32,  1.98it/s]Corrupt JPEG data: premature end of data segment
+       1/20      6.92G      4.275       5.73      2.486       1879        640:  16%|█▌        | 161/1027 [01:25<05:16,  2.74it/s]Corrupt JPEG data: 41 extraneous bytes before marker 0xd9
+       1/20      7.71G      4.263      5.634      2.472       2335        640:  16%|█▋        | 169/1027 [01:39<11:40,  1.23it/s]Corrupt JPEG data: premature end of data segment
+       1/20      8.63G      4.019      4.425       2.33       1977        640:  29%|██▉       | 299/1027 [02:48<04:22,  2.78it/s]Corrupt JPEG data: premature end of data segment
+       1/20      8.63G      3.975      4.245      2.311       2103        640:  32%|███▏      | 330/1027 [02:59<03:57,  2.94it/s]Corrupt JPEG data: 96 extraneous bytes before marker 0xd9
+       1/20      8.63G      3.959      4.178      2.304       1645        640:  33%|███▎      | 343/1027 [03:15<07:36,  1.50it/s]Corrupt JPEG data: premature end of data segment
+       1/20      8.63G      3.923      4.038      2.289       2117        640:  36%|███▋      | 373/1027 [03:32<04:01,  2.70it/s]Corrupt JPEG data: premature end of data segment
+       1/20      8.63G      3.844      3.722      2.255       2906        640:  44%|████▍     | 457/1027 [04:18<03:36,  2.63it/s]Corrupt JPEG data: premature end of data segment
+       1/20      8.63G      3.796      3.524      2.235       1803        640:  51%|█████     | 526/1027 [05:08<05:04,  1.64it/s]Corrupt JPEG data: premature end of data segment
+       1/20      8.63G      3.731      3.287      2.208       2303        640:  62%|██████▏   | 636/1027 [06:28<04:42,  1.38it/s]Corrupt JPEG data: premature end of data segment
+       1/20      8.63G      3.722      3.264      2.205       1454        640:  63%|██████▎   | 648/1027 [06:37<02:16,  2.77it/s]Corrupt JPEG data: premature end of data segment
+       1/20      8.63G      3.669      3.096      2.186       2027        640:  73%|███████▎  | 753/1027 [07:20<01:40,  2.72it/s]Corrupt JPEG data: 102 extraneous bytes before marker 0xd9
+       1/20      8.63G      3.666      3.088      2.185       1857        640:  74%|███████▍  | 759/1027 [07:24<01:50,  2.43it/s]Corrupt JPEG data: premature end of data segment
+       1/20      8.63G      3.659      3.064      2.182       1567        640:  76%|███████▌  | 776/1027 [07:35<02:15,  1.85it/s]Corrupt JPEG data: 784 extraneous bytes before marker 0xd9
+       1/20      8.63G      3.653      3.043       2.18       2313        640:  77%|███████▋  | 793/1027 [07:41<01:26,  2.70it/s]Corrupt JPEG data: 1260 extraneous bytes before marker 0xd9
+       1/20      8.63G      3.634      2.981      2.172       2445        640:  82%|████████▏ | 844/1027 [08:25<01:07,  2.70it/s]Corrupt JPEG data: premature end of data segment
+       1/20      8.63G      3.615      2.911      2.164       1818        640:  89%|████████▊ | 909/1027 [09:02<00:38,  3.06it/s]Corrupt JPEG data: 270 extraneous bytes before marker 0xd9
+       1/20      8.63G      3.613      2.903      2.163       1905        640:  89%|████████▉ | 917/1027 [09:04<00:37,  2.90it/s]Corrupt JPEG data: 12658 extraneous bytes before marker 0xd2
+       1/20      8.63G      3.602      2.869      2.159       1947        640:  93%|█████████▎| 952/1027 [09:26<01:43,  1.37s/it]Corrupt JPEG data: 2464 extraneous bytes before marker 0xd9
+       1/20      8.63G      3.596      2.842      2.157       1822        640:  96%|█████████▌| 983/1027 [09:44<00:21,  2.08it/s]Corrupt JPEG data: 4085 extraneous bytes before marker 0xd9
+       1/20      8.63G       3.59      2.823      2.155       2071        640:  98%|█████████▊| 1005/1027 [09:51<00:07,  3.00it/s]Corrupt JPEG data: premature end of data segment
+       1/20      8.63G      3.588      2.819      2.154       1841        640:  98%|█████████▊| 1010/1027 [09:53<00:05,  2.85it/s]Corrupt JPEG data: premature end of data segment
+       1/20      8.63G      3.587      2.805      2.153       2795        640: 100%|██████████| 1027/1027 [10:11<00:00,  1.68it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  14%|█▎        | 5/37 [00:28<03:40,  6.90s/it]Corrupt JPEG data: 305 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  38%|███▊      | 14/37 [00:38<00:15,  1.45it/s]Corrupt JPEG data: 786 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  46%|████▌     | 17/37 [00:39<00:09,  2.20it/s]Corrupt JPEG data: 366 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  95%|█████████▍| 35/37 [00:50<00:01,  1.95it/s]Corrupt JPEG data: premature end of data segment
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 37/37 [00:57<00:00,  1.55s/it]
+                   all        588      90967      0.729      0.653      0.723      0.414
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       2/20      3.22G      3.321       1.96      2.063       1554        640:   4%|▍         | 41/1027 [00:13<05:21,  3.06it/s]Corrupt JPEG data: 520 extraneous bytes before marker 0xd9
+       2/20      3.23G      3.315      1.951      2.059       1970        640:   6%|▋         | 65/1027 [00:21<05:11,  3.09it/s]Corrupt JPEG data: premature end of data segment
+       2/20      5.59G      3.315       1.95      2.057       2049        640:  10%|▉         | 101/1027 [00:37<06:25,  2.40it/s]Corrupt JPEG data: premature end of data segment
+       2/20      7.41G      3.321      1.952      2.054       2128        640:  18%|█▊        | 180/1027 [01:20<05:04,  2.78it/s]Corrupt JPEG data: premature end of data segment
+       2/20      7.41G      3.317      1.952      2.054       2024        640:  20%|█▉        | 204/1027 [01:29<05:38,  2.43it/s]Corrupt JPEG data: premature end of data segment
+       2/20      7.41G      3.317      1.953      2.055       1616        640:  20%|██        | 209/1027 [01:31<04:21,  3.13it/s]Corrupt JPEG data: premature end of data segment
+       2/20      7.41G      3.319      1.954      2.054       1658        640:  22%|██▏       | 231/1027 [01:38<04:11,  3.17it/s]Corrupt JPEG data: 12658 extraneous bytes before marker 0xd2
+       2/20      7.41G      3.321      1.954      2.054       1833        640:  23%|██▎       | 234/1027 [01:39<04:23,  3.00it/s]Corrupt JPEG data: premature end of data segment
+       2/20      7.41G      3.329      1.955      2.056       1572        640:  27%|██▋       | 279/1027 [01:55<03:40,  3.40it/s]Corrupt JPEG data: premature end of data segment
+       2/20      7.41G      3.324      1.952      2.054       1615        640:  29%|██▊       | 295/1027 [02:00<03:46,  3.23it/s]Corrupt JPEG data: premature end of data segment
+       2/20      7.41G      3.325      1.948      2.054       1646        640:  32%|███▏      | 333/1027 [02:12<03:47,  3.05it/s]Corrupt JPEG data: premature end of data segment
+       2/20      8.38G      3.325      1.949      2.054       1530        640:  33%|███▎      | 343/1027 [02:36<24:25,  2.14s/it]Corrupt JPEG data: premature end of data segment
+       2/20      8.38G      3.309      1.936      2.054       1861        640:  43%|████▎     | 440/1027 [06:22<22:35,  2.31s/it]Corrupt JPEG data: premature end of data segment
+       2/20      8.38G      3.303      1.929      2.052       1925        640:  49%|████▉     | 504/1027 [08:53<20:08,  2.31s/it]Corrupt JPEG data: 784 extraneous bytes before marker 0xd9
+       2/20      9.36G      3.304      1.926      2.053       1417        640:  55%|█████▍    | 563/1027 [12:17<29:12,  3.78s/it]Corrupt JPEG data: premature end of data segment
+Corrupt JPEG data: 4085 extraneous bytes before marker 0xd9
+       2/20      9.36G      3.303      1.925      2.052       1931        640:  57%|█████▋    | 583/1027 [13:42<31:07,  4.21s/it]Corrupt JPEG data: 562 extraneous bytes before marker 0xd9
+       2/20      9.36G      3.303      1.924      2.052       1586        640:  58%|█████▊    | 597/1027 [14:42<30:24,  4.24s/it]Corrupt JPEG data: 41 extraneous bytes before marker 0xd9
+       2/20      9.36G      3.302       1.92      2.052       2003        640:  61%|██████    | 624/1027 [16:37<29:44,  4.43s/it]Corrupt JPEG data: 102 extraneous bytes before marker 0xd9
+       2/20      9.36G      3.302      1.918      2.051       1386        640:  63%|██████▎   | 647/1027 [18:21<27:04,  4.27s/it]Corrupt JPEG data: 270 extraneous bytes before marker 0xd9
+       2/20      9.36G      3.301      1.916       2.05       2155        640:  64%|██████▎   | 653/1027 [18:46<25:01,  4.01s/it]Corrupt JPEG data: 2464 extraneous bytes before marker 0xd9
+       2/20      9.36G       3.29      1.905      2.049       1418        640:  77%|███████▋  | 790/1027 [28:07<16:27,  4.17s/it]Corrupt JPEG data: premature end of data segment
+       2/20      9.36G      3.291      1.905      2.049       1453        640:  79%|███████▉  | 812/1027 [29:38<14:21,  4.01s/it]Corrupt JPEG data: 96 extraneous bytes before marker 0xd9
+       2/20      9.36G       3.29      1.902      2.049       1891        640:  84%|████████▍ | 861/1027 [33:11<12:17,  4.45s/it]Corrupt JPEG data: 10773 extraneous bytes before marker 0xd9
+       2/20      9.36G      3.289      1.901      2.049       1873        640:  90%|█████████ | 928/1027 [37:47<06:50,  4.14s/it]Corrupt JPEG data: premature end of data segment
+       2/20      9.36G       3.29        1.9       2.05       1659        640:  96%|█████████▌| 987/1027 [41:48<02:39,  4.00s/it]Corrupt JPEG data: 1260 extraneous bytes before marker 0xd9
+       2/20      9.36G      3.289        1.9       2.05       1921        640: 100%|██████████| 1027/1027 [44:30<00:00,  2.60s/it]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  14%|█▎        | 5/37 [00:23<02:43,  5.11s/it]Corrupt JPEG data: 305 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  24%|██▍       | 9/37 [00:50<02:44,  5.87s/it]Corrupt JPEG data: 786 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  38%|███▊      | 14/37 [01:17<02:05,  5.44s/it]Corrupt JPEG data: 366 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  92%|█████████▏| 34/37 [03:04<00:15,  5.08s/it]Corrupt JPEG data: premature end of data segment
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 37/37 [03:23<00:00,  5.49s/it]
+                   all        588      90967      0.764      0.684      0.763      0.449
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       3/20      2.93G      3.129      1.698      1.989       2033        640:   0%|          | 4/1027 [00:01<06:08,  2.77it/s]Corrupt JPEG data: premature end of data segment
+       3/20      4.12G       3.28      1.835      2.043       1930        640:   2%|▏         | 23/1027 [00:07<05:14,  3.19it/s]Corrupt JPEG data: premature end of data segment
+       3/20      4.93G      3.299      1.871      2.064       1261        640:   6%|▋         | 65/1027 [00:21<04:59,  3.21it/s]Corrupt JPEG data: 1260 extraneous bytes before marker 0xd9
+       3/20      4.93G      3.304      1.863      2.061       1910        640:   8%|▊         | 84/1027 [00:27<05:40,  2.77it/s]Corrupt JPEG data: premature end of data segment
+       3/20      4.93G       3.29       1.86      2.061       1468        640:   9%|▉         | 94/1027 [00:30<05:13,  2.97it/s]Corrupt JPEG data: 41 extraneous bytes before marker 0xd9
+       3/20      4.93G      3.303      1.864      2.055       1743        640:  12%|█▏        | 120/1027 [00:39<05:04,  2.98it/s]Corrupt JPEG data: 96 extraneous bytes before marker 0xd9
+       3/20      4.93G      3.296      1.864      2.056       1686        640:  14%|█▍        | 142/1027 [00:47<04:53,  3.01it/s]Corrupt JPEG data: premature end of data segment
+       3/20      5.85G      3.265      1.837       2.05       1740        640:  27%|██▋       | 276/1027 [19:12<04:37,  2.71it/s]Corrupt JPEG data: premature end of data segment
+       3/20      6.89G      3.235      1.816      2.042       1503        640:  43%|████▎     | 444/1027 [19:56<02:06,  4.59it/s]Corrupt JPEG data: 12658 extraneous bytes before marker 0xd2
+       3/20      6.89G      3.233      1.815      2.041       1424        640:  44%|████▍     | 450/1027 [19:57<01:54,  5.05it/s]Corrupt JPEG data: premature end of data segment
+       3/20      6.89G      3.231      1.814      2.041       2053        640:  47%|████▋     | 480/1027 [20:05<01:58,  4.61it/s]Corrupt JPEG data: 270 extraneous bytes before marker 0xd9
+       3/20      6.89G      3.236      1.814      2.042       2022        640:  52%|█████▏    | 529/1027 [20:16<01:56,  4.29it/s]Corrupt JPEG data: premature end of data segment
+       3/20      6.89G      3.238      1.813      2.043       2127        640:  60%|█████▉    | 612/1027 [20:35<01:46,  3.91it/s]Corrupt JPEG data: 10773 extraneous bytes before marker 0xd9
+       3/20      6.89G      3.236      1.814      2.041       1567        640:  65%|██████▍   | 667/1027 [20:56<01:19,  4.51it/s]Corrupt JPEG data: premature end of data segment
+       3/20      6.89G      3.236      1.814      2.041       1485        640:  66%|██████▌   | 675/1027 [20:57<01:08,  5.10it/s]Corrupt JPEG data: premature end of data segment
+       3/20      6.89G      3.237      1.813      2.041       1997        640:  70%|██████▉   | 714/1027 [21:08<01:09,  4.53it/s]Corrupt JPEG data: premature end of data segment
+       3/20      6.89G      3.235      1.811      2.041       1611        640:  71%|███████▏  | 734/1027 [21:12<01:01,  4.74it/s]Corrupt JPEG data: 784 extraneous bytes before marker 0xd9
+       3/20      6.89G      3.237      1.811      2.041       1603        640:  74%|███████▍  | 765/1027 [21:19<00:56,  4.60it/s]Corrupt JPEG data: 102 extraneous bytes before marker 0xd9
+       3/20      6.89G      3.238       1.81      2.041       1512        640:  79%|███████▉  | 810/1027 [21:31<00:48,  4.46it/s]Corrupt JPEG data: 4085 extraneous bytes before marker 0xd9
+       3/20      6.89G      3.236      1.809      2.041       1457        640:  81%|████████▏ | 837/1027 [21:37<00:40,  4.70it/s]Corrupt JPEG data: premature end of data segment
+       3/20      6.89G      3.234      1.808      2.041       2184        640:  83%|████████▎ | 857/1027 [21:41<00:37,  4.57it/s]Corrupt JPEG data: 2464 extraneous bytes before marker 0xd9
+       3/20      6.89G      3.235      1.808      2.041       2462        640:  84%|████████▍ | 862/1027 [21:42<00:36,  4.48it/s]Corrupt JPEG data: premature end of data segment
+       3/20      6.89G      3.235      1.808      2.041       1846        640:  86%|████████▌ | 883/1027 [21:47<00:32,  4.48it/s]Corrupt JPEG data: premature end of data segment
+       3/20      6.89G      3.235      1.806      2.041       1577        640:  92%|█████████▏| 945/1027 [22:02<00:17,  4.59it/s]Corrupt JPEG data: premature end of data segment
+       3/20      6.89G      3.231      1.802       2.04       1458        640:  98%|█████████▊| 1004/1027 [22:14<00:05,  4.55it/s]Corrupt JPEG data: 520 extraneous bytes before marker 0xd9
+       3/20      6.89G      3.231      1.802       2.04       1346        640:  98%|█████████▊| 1005/1027 [22:15<00:04,  4.54it/s]Corrupt JPEG data: 562 extraneous bytes before marker 0xd9
+       3/20      6.89G       3.23      1.801       2.04       1485        640: 100%|██████████| 1027/1027 [22:19<00:00,  1.30s/it]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  14%|█▎        | 5/37 [00:15<02:05,  3.92s/it]Corrupt JPEG data: 305 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  38%|███▊      | 14/37 [00:20<00:09,  2.41it/s]Corrupt JPEG data: 786 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  46%|████▌     | 17/37 [00:21<00:06,  3.22it/s]Corrupt JPEG data: 366 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 37/37 [00:26<00:00,  1.40it/s]
+                   all        588      90967      0.793      0.718      0.796      0.476
+Corrupt JPEG data: premature end of data segment
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       4/20      4.91G        3.2      1.751      2.018       2074        640:   5%|▌         | 56/1027 [00:12<03:52,  4.17it/s]Corrupt JPEG data: 270 extraneous bytes before marker 0xd9
+       4/20      4.91G      3.192      1.752      2.021       1724        640:   9%|▉         | 92/1027 [00:20<03:20,  4.66it/s]Corrupt JPEG data: premature end of data segment
+       4/20      4.92G       3.19      1.744      2.021       1487        640:  14%|█▍        | 142/1027 [00:31<03:17,  4.47it/s]Corrupt JPEG data: premature end of data segment
+       4/20       6.4G      3.195      1.743      2.019       2367        640:  17%|█▋        | 173/1027 [00:45<04:01,  3.54it/s]Corrupt JPEG data: premature end of data segment
+       4/20       6.4G      3.206      1.749      2.021       1571        640:  19%|█▉        | 195/1027 [00:50<03:05,  4.50it/s]Corrupt JPEG data: 10773 extraneous bytes before marker 0xd9
+       4/20      7.27G      3.206      1.746      2.023       1217        640:  23%|██▎       | 232/1027 [01:04<10:59,  1.21it/s]Corrupt JPEG data: premature end of data segment
+       4/20      7.27G      3.211      1.749      2.024       2125        640:  23%|██▎       | 238/1027 [01:05<04:01,  3.26it/s]Corrupt JPEG data: premature end of data segment
+       4/20      7.27G      3.216      1.753      2.025       1928        640:  27%|██▋       | 276/1027 [01:19<09:10,  1.37it/s]Corrupt JPEG data: 96 extraneous bytes before marker 0xd9
+       4/20      7.27G      3.216      1.752      2.025       1824        640:  28%|██▊       | 284/1027 [01:26<04:35,  2.69it/s]Corrupt JPEG data: 41 extraneous bytes before marker 0xd9
+Corrupt JPEG data: premature end of data segment
+       4/20      7.27G      3.219      1.751      2.026       1892        640:  29%|██▉       | 301/1027 [01:29<02:44,  4.42it/s]Corrupt JPEG data: 562 extraneous bytes before marker 0xd9
+       4/20      7.27G      3.216      1.745      2.026       2657        640:  32%|███▏      | 333/1027 [01:38<02:52,  4.02it/s]Corrupt JPEG data: premature end of data segment
+       4/20      7.27G      3.217      1.747      2.027       2339        640:  34%|███▍      | 353/1027 [01:42<02:33,  4.39it/s]Corrupt JPEG data: premature end of data segment
+       4/20      7.27G      3.211      1.743      2.026       1588        640:  41%|████      | 420/1027 [02:03<02:13,  4.56it/s]Corrupt JPEG data: 102 extraneous bytes before marker 0xd9
+       4/20      7.27G      3.203      1.738      2.027       2184        640:  48%|████▊     | 497/1027 [02:19<01:53,  4.67it/s]Corrupt JPEG data: premature end of data segment
+       4/20      7.27G      3.194      1.732      2.025       1705        640:  55%|█████▌    | 565/1027 [02:34<01:36,  4.80it/s]Corrupt JPEG data: premature end of data segment
+       4/20      7.27G      3.187      1.727      2.023       2410        640:  59%|█████▉    | 605/1027 [02:43<01:34,  4.46it/s]Corrupt JPEG data: 784 extraneous bytes before marker 0xd9
+Corrupt JPEG data: 520 extraneous bytes before marker 0xd9
+       4/20      7.27G      3.187      1.724      2.023       1719        640:  64%|██████▎   | 653/1027 [02:54<01:18,  4.79it/s]Corrupt JPEG data: 1260 extraneous bytes before marker 0xd9
+       4/20      8.23G      3.186      1.721      2.023       2455        640:  68%|██████▊   | 700/1027 [03:33<09:05,  1.67s/it]Corrupt JPEG data: 12658 extraneous bytes before marker 0xd2
+       4/20      8.23G      3.185      1.721      2.023       1983        640:  69%|██████▉   | 709/1027 [03:54<14:39,  2.77s/it]Corrupt JPEG data: 2464 extraneous bytes before marker 0xd9
+       4/20      8.23G      3.187      1.718      2.023       1810        640:  81%|████████  | 830/1027 [07:36<05:26,  1.66s/it]Corrupt JPEG data: premature end of data segment
+       4/20      8.23G      3.184      1.716      2.022       1923        640:  84%|████████▍ | 864/1027 [08:33<04:29,  1.65s/it]Corrupt JPEG data: premature end of data segment
+       4/20      8.23G      3.183      1.714      2.023       1624        640:  86%|████████▌ | 883/1027 [09:05<04:01,  1.68s/it]Corrupt JPEG data: premature end of data segment
+       4/20      8.23G      3.179      1.711      2.022       1671        640:  95%|█████████▌| 980/1027 [11:58<01:17,  1.66s/it]Corrupt JPEG data: premature end of data segment
+       4/20      8.23G      3.181      1.711      2.021       1505        640:  98%|█████████▊| 1004/1027 [12:39<00:38,  1.68s/it]Corrupt JPEG data: 4085 extraneous bytes before marker 0xd9
+       4/20      8.23G      3.179       1.71      2.021       1456        640: 100%|██████████| 1027/1027 [13:17<00:00,  1.29it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  14%|█▎        | 5/37 [00:13<01:26,  2.71s/it]Corrupt JPEG data: 305 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  24%|██▍       | 9/37 [00:27<01:34,  3.37s/it]Corrupt JPEG data: 786 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  38%|███▊      | 14/37 [00:45<01:22,  3.57s/it]Corrupt JPEG data: 366 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  92%|█████████▏| 34/37 [01:59<00:10,  3.40s/it]Corrupt JPEG data: premature end of data segment
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 37/37 [02:13<00:00,  3.61s/it]
+                   all        588      90967      0.803      0.735      0.808      0.482
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       5/20      3.52G      3.116      1.706      2.062       1771        640:   1%|          | 8/1027 [00:01<03:55,  4.32it/s]Corrupt JPEG data: 562 extraneous bytes before marker 0xd9
+       5/20      4.67G      3.114      1.661      2.029       1654        640:   3%|▎         | 26/1027 [00:05<03:25,  4.87it/s]Corrupt JPEG data: premature end of data segment
+       5/20      5.33G      3.113      1.662       2.02       1960        640:   4%|▍         | 41/1027 [00:09<03:47,  4.34it/s]Corrupt JPEG data: premature end of data segment
+       5/20      5.33G      3.102      1.659      2.015       1953        640:   6%|▌         | 57/1027 [00:13<03:34,  4.52it/s]Corrupt JPEG data: premature end of data segment
+       5/20      5.33G      3.097      1.657      2.011       2171        640:   7%|▋         | 73/1027 [00:16<03:25,  4.64it/s]Corrupt JPEG data: 784 extraneous bytes before marker 0xd9
+       5/20      5.33G      3.094      1.655       2.01       2447        640:   8%|▊         | 84/1027 [00:19<03:31,  4.46it/s]Corrupt JPEG data: 41 extraneous bytes before marker 0xd9
+       5/20      6.02G      3.097      1.654      2.009       1973        640:   9%|▊         | 88/1027 [00:25<19:14,  1.23s/it]Corrupt JPEG data: 270 extraneous bytes before marker 0xd9
+       5/20      6.76G      3.103      1.653      2.011       1382        640:  11%|█         | 112/1027 [00:36<04:40,  3.26it/s]Corrupt JPEG data: premature end of data segment
+       5/20      7.69G      3.121      1.657      2.012       2021        640:  14%|█▍        | 144/1027 [01:00<05:39,  2.60it/s]Corrupt JPEG data: premature end of data segment
+       5/20      7.69G      3.123       1.66      2.012       1777        640:  16%|█▌        | 165/1027 [01:15<06:49,  2.10it/s]Corrupt JPEG data: premature end of data segment
+       5/20      7.69G      3.133      1.665      2.009       2321        640:  18%|█▊        | 186/1027 [01:25<05:27,  2.57it/s]Corrupt JPEG data: 102 extraneous bytes before marker 0xd9
+       5/20      7.69G      3.139      1.665      2.009       2393        640:  22%|██▏       | 227/1027 [01:40<03:06,  4.30it/s]Corrupt JPEG data: 2464 extraneous bytes before marker 0xd9
+       5/20      7.69G      3.135      1.663      2.008       1709        640:  23%|██▎       | 237/1027 [01:42<02:55,  4.51it/s]Corrupt JPEG data: 10773 extraneous bytes before marker 0xd9
+       5/20      7.69G      3.136      1.663      2.009       2104        640:  23%|██▎       | 238/1027 [01:42<03:05,  4.25it/s]Corrupt JPEG data: 96 extraneous bytes before marker 0xd9
+       5/20      7.69G      3.134      1.662      2.009       2394        640:  24%|██▍       | 247/1027 [01:44<03:22,  3.84it/s]Corrupt JPEG data: premature end of data segment
+       5/20      7.69G      3.128      1.657       2.01       1272        640:  40%|███▉      | 408/1027 [02:55<02:51,  3.62it/s]Corrupt JPEG data: premature end of data segment
+       5/20      7.69G      3.127      1.654      2.009       2031        640:  47%|████▋     | 481/1027 [03:25<16:36,  1.82s/it]Corrupt JPEG data: premature end of data segment
+       5/20      7.69G      3.126      1.653      2.009       1979        640:  48%|████▊     | 498/1027 [03:29<02:02,  4.31it/s]Corrupt JPEG data: 1260 extraneous bytes before marker 0xd9
+       5/20      7.69G      3.132      1.655      2.011       2089        640:  55%|█████▌    | 569/1027 [03:50<02:04,  3.68it/s]Corrupt JPEG data: 520 extraneous bytes before marker 0xd9
+       5/20      7.69G      3.131      1.655       2.01       1910        640:  67%|██████▋   | 692/1027 [04:49<01:16,  4.35it/s]Corrupt JPEG data: premature end of data segment
+       5/20      7.69G      3.131      1.653       2.01       2199        640:  70%|███████   | 719/1027 [05:06<02:21,  2.18it/s]Corrupt JPEG data: premature end of data segment
+       5/20      7.69G       3.13      1.653       2.01       1857        640:  71%|███████   | 730/1027 [05:10<01:44,  2.85it/s]Corrupt JPEG data: premature end of data segment
+       5/20      7.69G      3.127      1.651       2.01       1846        640:  77%|███████▋  | 791/1027 [05:35<01:08,  3.43it/s]Corrupt JPEG data: premature end of data segment
+       5/20      7.69G      3.127       1.65      2.011       1580        640:  80%|████████  | 824/1027 [05:48<00:50,  4.04it/s]Corrupt JPEG data: premature end of data segment
+       5/20      7.69G      3.129       1.65      2.011       1443        640:  84%|████████▍ | 867/1027 [06:08<00:56,  2.84it/s]Corrupt JPEG data: 12658 extraneous bytes before marker 0xd2
+       5/20      7.69G      3.133      1.649       2.01       2305        640:  95%|█████████▍| 972/1027 [06:51<00:15,  3.49it/s]Corrupt JPEG data: 4085 extraneous bytes before marker 0xd9
+       5/20      7.69G      3.132      1.648      2.011       2060        640: 100%|██████████| 1027/1027 [07:08<00:00,  2.40it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  14%|█▎        | 5/37 [00:25<03:15,  6.11s/it]Corrupt JPEG data: 305 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  41%|████      | 15/37 [00:35<00:11,  1.89it/s]Corrupt JPEG data: 786 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  49%|████▊     | 18/37 [00:36<00:07,  2.71it/s]Corrupt JPEG data: 366 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  95%|█████████▍| 35/37 [00:45<00:00,  2.24it/s]Corrupt JPEG data: premature end of data segment
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 37/37 [00:51<00:00,  1.40s/it]
+                   all        588      90967      0.827      0.736      0.822      0.502
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       6/20      4.25G      3.132      1.621      2.005       1859        640:   1%|▏         | 14/1027 [00:04<04:46,  3.54it/s]Corrupt JPEG data: 41 extraneous bytes before marker 0xd9
+       6/20      5.82G      3.142      1.644      2.016       1523        640:   4%|▎         | 38/1027 [00:14<05:05,  3.24it/s]Corrupt JPEG data: 102 extraneous bytes before marker 0xd9
+       6/20      5.82G      3.165      1.655      2.018       1817        640:   6%|▋         | 66/1027 [00:26<04:27,  3.60it/s]Corrupt JPEG data: 12658 extraneous bytes before marker 0xd2
+       6/20      5.82G      3.128      1.639      2.013       1781        640:  11%|█▏        | 117/1027 [00:41<04:20,  3.49it/s]Corrupt JPEG data: 562 extraneous bytes before marker 0xd9
+       6/20      5.82G      3.108      1.623      2.006       1734        640:  17%|█▋        | 179/1027 [01:05<04:14,  3.33it/s]Corrupt JPEG data: premature end of data segment
+       6/20      5.82G        3.1      1.611      2.002       1342        640:  24%|██▍       | 248/1027 [01:25<03:16,  3.96it/s]Corrupt JPEG data: premature end of data segment
+       6/20      6.81G      3.108      1.613      2.001       1407        640:  28%|██▊       | 287/1027 [02:16<21:36,  1.75s/it]Corrupt JPEG data: 784 extraneous bytes before marker 0xd9
+       6/20      6.81G       3.11      1.615      2.002       2277        640:  31%|███       | 317/1027 [03:16<23:06,  1.95s/it]Corrupt JPEG data: premature end of data segment
+       6/20      6.81G      3.108      1.615      2.003       2078        640:  33%|███▎      | 337/1027 [03:53<21:34,  1.88s/it]Corrupt JPEG data: premature end of data segment
+       6/20      6.81G      3.109      1.615      2.004       1766        640:  34%|███▍      | 350/1027 [04:17<20:47,  1.84s/it]Corrupt JPEG data: premature end of data segment
+       6/20      6.81G       3.11      1.615      2.004       1792        640:  38%|███▊      | 392/1027 [05:35<19:51,  1.88s/it]Corrupt JPEG data: premature end of data segment
+       6/20      6.81G      3.111      1.616      2.005       2084        640:  41%|████      | 423/1027 [06:36<18:19,  1.82s/it]Corrupt JPEG data: premature end of data segment
+       6/20      6.81G      3.105      1.611      2.002       2099        640:  55%|█████▌    | 565/1027 [11:19<17:02,  2.21s/it]Corrupt JPEG data: premature end of data segment
+       6/20      6.81G      3.105      1.611      2.003       1675        640:  63%|██████▎   | 650/1027 [13:58<11:56,  1.90s/it]Corrupt JPEG data: 1260 extraneous bytes before marker 0xd9
+       6/20      6.81G      3.104      1.608      2.004       1995        640:  68%|██████▊   | 697/1027 [15:26<09:59,  1.82s/it]Corrupt JPEG data: 270 extraneous bytes before marker 0xd9
+       6/20      6.81G      3.103      1.604      2.003       2129        640:  75%|███████▌  | 773/1027 [17:49<08:11,  1.94s/it]Corrupt JPEG data: premature end of data segment
+       6/20      6.81G      3.102      1.604      2.002       1607        640:  78%|███████▊  | 798/1027 [18:35<06:49,  1.79s/it]Corrupt JPEG data: 2464 extraneous bytes before marker 0xd9
+       6/20      7.92G      3.103      1.605      2.003       1859        640:  81%|████████  | 831/1027 [20:21<11:36,  3.55s/it]Corrupt JPEG data: premature end of data segment
+Corrupt JPEG data: 520 extraneous bytes before marker 0xd9
+       6/20      7.92G      3.104      1.605      2.003       2431        640:  81%|████████▏ | 836/1027 [20:37<09:30,  2.99s/it]Corrupt JPEG data: premature end of data segment
+       6/20      7.92G      3.105      1.606      2.003       2736        640:  86%|████████▌ | 879/1027 [23:03<07:29,  3.04s/it]Corrupt JPEG data: 96 extraneous bytes before marker 0xd9
+       6/20      7.92G      3.105      1.605      2.002       2035        640:  91%|█████████ | 931/1027 [26:12<06:04,  3.80s/it]Corrupt JPEG data: premature end of data segment
+       6/20      7.92G      3.104      1.605      2.002       1648        640:  92%|█████████▏| 947/1027 [27:06<04:23,  3.29s/it]Corrupt JPEG data: premature end of data segment
+       6/20      7.92G      3.106      1.605      2.002       1946        640:  94%|█████████▍| 965/1027 [28:10<03:42,  3.58s/it]Corrupt JPEG data: 4085 extraneous bytes before marker 0xd9
+       6/20      7.92G      3.105      1.605      2.002       1620        640:  96%|█████████▌| 988/1027 [29:34<02:08,  3.28s/it]Corrupt JPEG data: premature end of data segment
+       6/20      7.92G      3.105      1.604      2.002       1762        640:  97%|█████████▋| 998/1027 [30:10<01:41,  3.51s/it]Corrupt JPEG data: 10773 extraneous bytes before marker 0xd9
+       6/20      7.92G      3.105      1.604      2.002       1440        640: 100%|██████████| 1027/1027 [31:48<00:00,  1.86s/it]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  14%|█▎        | 5/37 [00:12<01:18,  2.45s/it]Corrupt JPEG data: 305 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  24%|██▍       | 9/37 [00:28<01:42,  3.67s/it]Corrupt JPEG data: 786 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  38%|███▊      | 14/37 [00:49<01:34,  4.12s/it]Corrupt JPEG data: 366 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  92%|█████████▏| 34/37 [02:06<00:10,  3.42s/it]Corrupt JPEG data: premature end of data segment
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 37/37 [02:20<00:00,  3.79s/it]
+                   all        588      90967      0.834      0.754      0.832       0.51
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       7/20      3.86G      3.085      1.563          2       1872        640:   3%|▎         | 28/1027 [00:06<03:40,  4.52it/s]Corrupt JPEG data: 41 extraneous bytes before marker 0xd9
+       7/20      3.86G      3.074      1.586       2.01       1982        640:   6%|▌         | 63/1027 [00:13<03:49,  4.21it/s]Corrupt JPEG data: 4085 extraneous bytes before marker 0xd9
+       7/20      4.55G      3.092       1.59      2.008       1747        640:  11%|█         | 109/1027 [00:24<03:11,  4.80it/s]Corrupt JPEG data: 562 extraneous bytes before marker 0xd9
+       7/20      4.55G      3.107      1.597      2.006       1707        640:  13%|█▎        | 135/1027 [00:30<03:15,  4.55it/s]Corrupt JPEG data: premature end of data segment
+       7/20      4.55G      3.102      1.594      2.003       1854        640:  15%|█▌        | 157/1027 [00:35<03:30,  4.14it/s]Corrupt JPEG data: 270 extraneous bytes before marker 0xd9
+       7/20      5.35G      3.112      1.599      2.009       1538        640:  22%|██▏       | 228/1027 [00:51<02:45,  4.84it/s]Corrupt JPEG data: premature end of data segment
+       7/20      5.35G      3.117        1.6      2.009       1865        640:  26%|██▌       | 266/1027 [00:59<03:05,  4.11it/s]Corrupt JPEG data: 96 extraneous bytes before marker 0xd9
+       7/20      5.35G      3.109      1.597      2.007       1631        640:  29%|██▉       | 302/1027 [01:08<02:47,  4.33it/s]Corrupt JPEG data: premature end of data segment
+       7/20      7.08G      3.103       1.59      2.003       1472        640:  39%|███▉      | 399/1027 [01:52<02:12,  4.75it/s]Corrupt JPEG data: 10773 extraneous bytes before marker 0xd9
+       7/20      7.08G      3.094      1.589          2       1731        640:  50%|████▉     | 511/1027 [02:22<01:50,  4.68it/s]Corrupt JPEG data: premature end of data segment
+       7/20      7.08G      3.094      1.588          2       2205        640:  51%|█████     | 521/1027 [02:24<02:06,  4.01it/s]Corrupt JPEG data: premature end of data segment
+       7/20      7.08G      3.093      1.587          2       2587        640:  52%|█████▏    | 534/1027 [02:27<01:53,  4.35it/s]Corrupt JPEG data: 520 extraneous bytes before marker 0xd9
+       7/20      7.08G      3.089      1.583      1.998       1667        640:  67%|██████▋   | 684/1027 [03:07<01:10,  4.83it/s]Corrupt JPEG data: 1260 extraneous bytes before marker 0xd9
+       7/20      7.08G       3.09      1.583      1.997       2053        640:  68%|██████▊   | 695/1027 [03:09<01:13,  4.50it/s]Corrupt JPEG data: premature end of data segment
+       7/20      7.08G      3.092      1.583      1.998       1746        640:  69%|██████▉   | 712/1027 [03:13<01:13,  4.27it/s]Corrupt JPEG data: premature end of data segment
+       7/20      7.08G      3.092      1.582      1.998       1250        640:  72%|███████▏  | 739/1027 [03:19<00:59,  4.87it/s]Corrupt JPEG data: 2464 extraneous bytes before marker 0xd9
+       7/20      7.08G      3.094      1.582      1.998       2164        640:  75%|███████▌  | 771/1027 [03:27<01:05,  3.93it/s]Corrupt JPEG data: premature end of data segment
+       7/20      7.08G      3.094      1.582      1.998       1635        640:  76%|███████▌  | 781/1027 [03:29<00:54,  4.52it/s]Corrupt JPEG data: premature end of data segment
+       7/20         8G      3.091      1.579      1.998       1737        640:  80%|████████  | 823/1027 [03:43<04:05,  1.20s/it]Corrupt JPEG data: premature end of data segment
+       7/20         8G      3.088      1.577      1.997       1620        640:  87%|████████▋ | 890/1027 [04:11<00:31,  4.38it/s]Corrupt JPEG data: premature end of data segment
+       7/20         8G      3.088      1.576      1.997       1745        640:  87%|████████▋ | 895/1027 [04:12<00:31,  4.16it/s]Corrupt JPEG data: 784 extraneous bytes before marker 0xd9
+       7/20         8G      3.087      1.575      1.996       1980        640:  88%|████████▊ | 905/1027 [04:14<00:26,  4.63it/s]Corrupt JPEG data: premature end of data segment
+       7/20         8G      3.086      1.575      1.997       1339        640:  91%|█████████ | 935/1027 [04:22<00:20,  4.45it/s]Corrupt JPEG data: premature end of data segment
+       7/20         8G      3.087      1.576      1.997       1594        640:  94%|█████████▍| 968/1027 [04:35<01:03,  1.08s/it]Corrupt JPEG data: 102 extraneous bytes before marker 0xd9
+       7/20      9.29G      3.086      1.575      1.997       1932        640:  95%|█████████▌| 980/1027 [04:47<00:24,  1.89it/s]Corrupt JPEG data: 12658 extraneous bytes before marker 0xd2
+       7/20      9.29G      3.087      1.575      1.997       1714        640:  98%|█████████▊| 1007/1027 [04:56<00:04,  4.98it/s]Corrupt JPEG data: premature end of data segment
+       7/20      9.29G      3.086      1.574      1.996       2020        640: 100%|██████████| 1027/1027 [05:03<00:00,  3.39it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  14%|█▎        | 5/37 [00:19<02:35,  4.85s/it]Corrupt JPEG data: 305 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  38%|███▊      | 14/37 [00:26<00:10,  2.14it/s]Corrupt JPEG data: 786 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  46%|████▌     | 17/37 [00:27<00:06,  3.14it/s]Corrupt JPEG data: 366 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  95%|█████████▍| 35/37 [00:33<00:00,  3.53it/s]Corrupt JPEG data: premature end of data segment
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 37/37 [00:35<00:00,  1.05it/s]
+                   all        588      90967      0.825      0.757      0.834      0.509
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       8/20      5.24G      3.072      1.544      1.981       2398        640:   2%|▏         | 24/1027 [00:05<03:59,  4.18it/s]Corrupt JPEG data: premature end of data segment
+       8/20      5.24G      3.045      1.521       1.98       1356        640:   3%|▎         | 32/1027 [00:07<03:34,  4.65it/s]Corrupt JPEG data: 41 extraneous bytes before marker 0xd9
+       8/20      5.24G      3.032      1.513      1.978       1829        640:   4%|▎         | 36/1027 [00:08<03:38,  4.54it/s]Corrupt JPEG data: premature end of data segment
+       8/20      6.02G      3.031      1.509      1.982       1704        640:   5%|▌         | 53/1027 [00:17<05:33,  2.92it/s]Corrupt JPEG data: 562 extraneous bytes before marker 0xd9
+       8/20      6.02G      3.051      1.528      1.983       2383        640:  10%|▉         | 102/1027 [00:28<03:30,  4.40it/s]Corrupt JPEG data: premature end of data segment
+       8/20      6.81G      3.052      1.527      1.984       1735        640:  12%|█▏        | 119/1027 [00:37<09:11,  1.65it/s]Corrupt JPEG data: premature end of data segment
+       8/20      6.81G      3.051      1.531      1.985       1809        640:  13%|█▎        | 133/1027 [00:44<03:53,  3.83it/s]Corrupt JPEG data: 520 extraneous bytes before marker 0xd9
+       8/20      6.81G      3.052       1.53      1.984       1854        640:  13%|█▎        | 136/1027 [00:45<03:34,  4.16it/s]Corrupt JPEG data: premature end of data segment
+       8/20      6.81G      3.059      1.539      1.985       1926        640:  26%|██▌       | 269/1027 [01:28<02:45,  4.57it/s]Corrupt JPEG data: 270 extraneous bytes before marker 0xd9
+       8/20      7.62G       3.06      1.539      1.985       2794        640:  28%|██▊       | 284/1027 [01:46<22:40,  1.83s/it]Corrupt JPEG data: 1260 extraneous bytes before marker 0xd9
+       8/20      7.62G      3.059      1.539      1.985       1976        640:  28%|██▊       | 292/1027 [01:47<03:55,  3.12it/s]Corrupt JPEG data: premature end of data segment
+       8/20      8.48G      3.056      1.535      1.985       1351        640:  34%|███▍      | 351/1027 [02:25<08:25,  1.34it/s]Corrupt JPEG data: 2464 extraneous bytes before marker 0xd9
+       8/20      8.48G      3.052      1.533      1.986       1585        640:  36%|███▌      | 372/1027 [02:29<02:27,  4.44it/s]Corrupt JPEG data: premature end of data segment
+       8/20      8.48G      3.051      1.534      1.987       1673        640:  56%|█████▌    | 574/1027 [03:35<01:41,  4.46it/s]Corrupt JPEG data: 10773 extraneous bytes before marker 0xd9
+       8/20      8.48G      3.049      1.533      1.987       2160        640:  59%|█████▉    | 608/1027 [03:43<01:40,  4.17it/s]Corrupt JPEG data: 102 extraneous bytes before marker 0xd9
+       8/20      8.48G      3.051      1.534      1.987       1951        640:  63%|██████▎   | 650/1027 [04:10<02:06,  2.98it/s]Corrupt JPEG data: premature end of data segment
+       8/20      8.48G       3.05      1.534      1.987       1840        640:  65%|██████▍   | 663/1027 [04:13<01:19,  4.56it/s]Corrupt JPEG data: premature end of data segment
+       8/20      8.48G      3.051      1.534      1.987       1732        640:  65%|██████▍   | 666/1027 [04:14<01:23,  4.33it/s]Corrupt JPEG data: premature end of data segment
+       8/20      8.48G      3.053      1.537      1.988       1948        640:  68%|██████▊   | 700/1027 [04:35<03:37,  1.50it/s]Corrupt JPEG data: premature end of data segment
+       8/20      8.48G      3.051      1.535      1.988       1603        640:  70%|██████▉   | 716/1027 [04:43<01:53,  2.73it/s]Corrupt JPEG data: premature end of data segment
+       8/20      8.48G      3.053      1.537      1.988       2182        640:  77%|███████▋  | 786/1027 [05:12<02:44,  1.47it/s]Corrupt JPEG data: premature end of data segment
+       8/20      8.48G      3.055      1.538      1.988       2336        640:  81%|████████  | 829/1027 [05:40<03:11,  1.03it/s]Corrupt JPEG data: premature end of data segment
+       8/20      8.48G      3.051      1.537      1.987       2075        640:  85%|████████▍ | 872/1027 [05:53<00:35,  4.38it/s]Corrupt JPEG data: 96 extraneous bytes before marker 0xd9
+       8/20      8.48G       3.05      1.537      1.987       2289        640:  86%|████████▌ | 880/1027 [05:55<00:34,  4.25it/s]Corrupt JPEG data: 4085 extraneous bytes before marker 0xd9
+       8/20      8.48G      3.053      1.537      1.987       2039        640:  93%|█████████▎| 957/1027 [06:25<00:16,  4.30it/s]Corrupt JPEG data: 12658 extraneous bytes before marker 0xd2
+       8/20      8.48G      3.055      1.539      1.988       1074        640:  96%|█████████▌| 988/1027 [06:41<00:19,  2.00it/s]Corrupt JPEG data: 784 extraneous bytes before marker 0xd9
+       8/20      8.48G      3.053      1.538      1.988       2057        640: 100%|██████████| 1027/1027 [06:55<00:00,  2.47it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  14%|█▎        | 5/37 [00:25<03:15,  6.11s/it]Corrupt JPEG data: 305 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  38%|███▊      | 14/37 [00:34<00:12,  1.85it/s]Corrupt JPEG data: 786 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  46%|████▌     | 17/37 [00:34<00:06,  2.90it/s]Corrupt JPEG data: 366 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  95%|█████████▍| 35/37 [00:43<00:00,  2.71it/s]Corrupt JPEG data: premature end of data segment
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 37/37 [00:48<00:00,  1.31s/it]
+                   all        588      90967      0.844      0.761      0.842      0.518
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       9/20      3.85G      3.045      1.537      1.989       1861        640:   3%|▎         | 32/1027 [00:06<03:26,  4.81it/s]Corrupt JPEG data: premature end of data segment
+       9/20      5.75G      3.058      1.537      1.989       2076        640:   7%|▋         | 67/1027 [00:17<04:47,  3.34it/s]Corrupt JPEG data: 41 extraneous bytes before marker 0xd9
+       9/20      5.75G      3.059      1.536       1.99       1719        640:   7%|▋         | 68/1027 [00:18<04:25,  3.62it/s]Corrupt JPEG data: premature end of data segment
+       9/20      7.87G      3.031      1.521      1.987       1502        640:  17%|█▋        | 173/1027 [01:08<03:43,  3.83it/s]Corrupt JPEG data: 1260 extraneous bytes before marker 0xd9
+       9/20      9.39G      3.054      1.525      1.988       1778        640:  25%|██▌       | 257/1027 [02:04<05:11,  2.47it/s]Corrupt JPEG data: premature end of data segment
+       9/20      9.39G      3.055      1.526      1.988       2203        640:  25%|██▌       | 261/1027 [02:14<28:21,  2.22s/it]Corrupt JPEG data: 12658 extraneous bytes before marker 0xd2
+       9/20      9.39G      3.049      1.524      1.986       2399        640:  29%|██▉       | 297/1027 [02:26<10:47,  1.13it/s]Corrupt JPEG data: premature end of data segment
+       9/20      9.39G      3.046      1.522      1.986       2134        640:  30%|███       | 312/1027 [02:34<06:10,  1.93it/s]Corrupt JPEG data: 562 extraneous bytes before marker 0xd9
+       9/20      9.39G      3.044      1.521      1.985       1729        640:  31%|███       | 319/1027 [02:39<10:04,  1.17it/s]Corrupt JPEG data: 4085 extraneous bytes before marker 0xd9
+       9/20        11G      3.039      1.517      1.981       1430        640:  45%|████▍     | 460/1027 [06:08<28:31,  3.02s/it]Corrupt JPEG data: premature end of data segment
+       9/20        11G      3.041      1.517      1.981       2902        640:  45%|████▌     | 466/1027 [06:32<33:38,  3.60s/it]Corrupt JPEG data: premature end of data segment
+       9/20        11G      3.039      1.516       1.98       2270        640:  46%|████▋     | 475/1027 [07:00<30:31,  3.32s/it]Corrupt JPEG data: premature end of data segment
+       9/20        11G      3.036      1.513       1.98       1522        640:  54%|█████▍    | 554/1027 [11:32<29:09,  3.70s/it]Corrupt JPEG data: 2464 extraneous bytes before marker 0xd9
+       9/20      11.9G      3.035      1.513       1.98       2580        640:  55%|█████▌    | 568/1027 [12:23<27:40,  3.62s/it]Corrupt JPEG data: 520 extraneous bytes before marker 0xd9
+       9/20      11.9G      3.034      1.512      1.981       2040        640:  59%|█████▉    | 607/1027 [14:48<24:58,  3.57s/it]Corrupt JPEG data: premature end of data segment
+       9/20      11.9G      3.035      1.511       1.98       2083        640:  63%|██████▎   | 646/1027 [17:22<23:56,  3.77s/it]Corrupt JPEG data: premature end of data segment
+       9/20      11.9G      3.035      1.511      1.981       1638        640:  66%|██████▌   | 674/1027 [19:01<19:57,  3.39s/it]Corrupt JPEG data: premature end of data segment
+       9/20      11.9G      3.037      1.512      1.982       2072        640:  68%|██████▊   | 699/1027 [20:44<24:16,  4.44s/it]Corrupt JPEG data: 784 extraneous bytes before marker 0xd9
+       9/20      11.9G      3.036      1.512      1.981       1802        640:  71%|███████   | 726/1027 [22:33<18:16,  3.64s/it]Corrupt JPEG data: premature end of data segment
+       9/20      11.9G      3.036      1.512      1.981       2287        640:  72%|███████▏  | 740/1027 [23:27<22:16,  4.66s/it]Corrupt JPEG data: premature end of data segment
+       9/20      11.9G      3.039      1.513       1.98       2040        640:  75%|███████▍  | 766/1027 [25:14<18:08,  4.17s/it]Corrupt JPEG data: 10773 extraneous bytes before marker 0xd9
+       9/20      11.9G      3.039      1.513       1.98       2306        640:  75%|███████▍  | 767/1027 [25:18<18:00,  4.16s/it]Corrupt JPEG data: 102 extraneous bytes before marker 0xd9
+       9/20      11.9G      3.037      1.513      1.981       2071        640:  77%|███████▋  | 793/1027 [26:51<13:06,  3.36s/it]Corrupt JPEG data: 270 extraneous bytes before marker 0xd9
+       9/20      11.9G      3.039      1.515      1.981       1565        640:  87%|████████▋ | 891/1027 [32:57<08:29,  3.74s/it]Corrupt JPEG data: 96 extraneous bytes before marker 0xd9
+       9/20      11.9G       3.04      1.515      1.981       1714        640:  93%|█████████▎| 960/1027 [37:20<03:47,  3.40s/it]Corrupt JPEG data: premature end of data segment
+       9/20      11.9G       3.04      1.514      1.981       1830        640:  95%|█████████▍| 972/1027 [38:02<03:13,  3.52s/it]Corrupt JPEG data: premature end of data segment
+       9/20      11.9G      3.039      1.515      1.981       1145        640:  99%|█████████▊| 1014/1027 [40:40<00:46,  3.59s/it]Corrupt JPEG data: premature end of data segment
+       9/20      11.9G       3.04      1.515      1.981       2420        640: 100%|██████████| 1027/1027 [41:35<00:00,  2.43s/it]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  14%|█▎        | 5/37 [00:15<01:53,  3.56s/it]Corrupt JPEG data: 305 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  24%|██▍       | 9/37 [00:33<01:58,  4.23s/it]Corrupt JPEG data: 786 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  38%|███▊      | 14/37 [00:56<01:44,  4.56s/it]Corrupt JPEG data: 366 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  92%|█████████▏| 34/37 [02:28<00:12,  4.30s/it]Corrupt JPEG data: premature end of data segment
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 37/37 [02:45<00:00,  4.46s/it]
+                   all        588      90967      0.855      0.761      0.847      0.525
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      10/20      6.57G      3.023      1.512      1.975       2138        640:   9%|▉         | 97/1027 [00:33<03:54,  3.97it/s]Corrupt JPEG data: 102 extraneous bytes before marker 0xd9
+      10/20      6.57G      3.014      1.505      1.974       1365        640:  11%|█         | 108/1027 [00:36<02:55,  5.23it/s]Corrupt JPEG data: premature end of data segment
+      10/20      6.57G      3.018      1.507      1.975       2558        640:  11%|█         | 111/1027 [00:36<03:18,  4.61it/s]Corrupt JPEG data: premature end of data segment
+      10/20      7.47G      3.025      1.509      1.975       1502        640:  14%|█▍        | 143/1027 [00:52<05:41,  2.59it/s]Corrupt JPEG data: premature end of data segment
+      10/20      7.47G      3.022      1.509      1.975       1865        640:  15%|█▍        | 150/1027 [00:53<03:17,  4.44it/s]Corrupt JPEG data: 4085 extraneous bytes before marker 0xd9
+      10/20      7.47G      3.038      1.512      1.977       1701        640:  19%|█▉        | 199/1027 [01:11<03:23,  4.06it/s]Corrupt JPEG data: 41 extraneous bytes before marker 0xd9
+      10/20      7.47G      3.032      1.509      1.975       1879        640:  24%|██▍       | 251/1027 [01:25<03:00,  4.30it/s]Corrupt JPEG data: 520 extraneous bytes before marker 0xd9
+      10/20      7.47G       3.03      1.504      1.976       1708        640:  28%|██▊       | 287/1027 [01:37<02:41,  4.58it/s]Corrupt JPEG data: premature end of data segment
+      10/20      7.47G      3.034      1.503      1.977       1812        640:  31%|███       | 320/1027 [01:47<02:37,  4.50it/s]Corrupt JPEG data: premature end of data segment
+      10/20      7.47G       3.04      1.503      1.977       1579        640:  33%|███▎      | 344/1027 [01:52<02:42,  4.21it/s]Corrupt JPEG data: premature end of data segment
+      10/20      7.47G      3.043      1.503      1.978       1708        640:  36%|███▌      | 371/1027 [02:01<04:00,  2.72it/s]Corrupt JPEG data: 12658 extraneous bytes before marker 0xd2
+      10/20      7.47G      3.036      1.501      1.979       1769        640:  42%|████▏     | 436/1027 [02:19<02:12,  4.46it/s]Corrupt JPEG data: 10773 extraneous bytes before marker 0xd9
+      10/20      7.47G      3.032      1.499      1.979       1568        640:  50%|█████     | 516/1027 [02:47<01:44,  4.88it/s]Corrupt JPEG data: premature end of data segment
+      10/20      7.47G      3.029      1.497      1.979       1593        640:  54%|█████▍    | 555/1027 [03:00<02:35,  3.03it/s]Corrupt JPEG data: 270 extraneous bytes before marker 0xd9
+      10/20      7.47G      3.029      1.499      1.979       1576        640:  59%|█████▉    | 609/1027 [03:29<03:03,  2.28it/s]Corrupt JPEG data: 1260 extraneous bytes before marker 0xd9
+      10/20      7.47G      3.024        1.5      1.979       1896        640:  66%|██████▋   | 682/1027 [03:57<01:13,  4.68it/s]Corrupt JPEG data: 784 extraneous bytes before marker 0xd9
+      10/20      7.47G      3.026        1.5       1.98       1942        640:  75%|███████▌  | 772/1027 [04:27<00:56,  4.54it/s]Corrupt JPEG data: premature end of data segment
+      10/20      7.47G      3.026        1.5       1.98       2569        640:  76%|███████▌  | 780/1027 [04:34<01:38,  2.50it/s]Corrupt JPEG data: 96 extraneous bytes before marker 0xd9
+      10/20      7.47G      3.025      1.498       1.98       1891        640:  81%|████████  | 834/1027 [04:51<00:50,  3.86it/s]Corrupt JPEG data: 2464 extraneous bytes before marker 0xd9
+      10/20      7.47G      3.023      1.497      1.979       2066        640:  85%|████████▌ | 875/1027 [05:02<00:49,  3.10it/s]Corrupt JPEG data: premature end of data segment
+      10/20      7.47G      3.023      1.497      1.979       1867        640:  86%|████████▌ | 885/1027 [05:05<00:32,  4.36it/s]Corrupt JPEG data: premature end of data segment
+      10/20      7.47G      3.022      1.497      1.979       1394        640:  89%|████████▉ | 915/1027 [05:13<00:26,  4.15it/s]Corrupt JPEG data: premature end of data segment
+      10/20      7.47G      3.021      1.496      1.978       2573        640:  90%|█████████ | 926/1027 [05:16<00:22,  4.51it/s]Corrupt JPEG data: 562 extraneous bytes before marker 0xd9
+      10/20      7.47G      3.021      1.496      1.979       1749        640:  91%|█████████ | 932/1027 [05:17<00:20,  4.67it/s]Corrupt JPEG data: premature end of data segment
+      10/20      7.47G      3.022      1.496      1.978       1586        640:  97%|█████████▋| 998/1027 [05:38<00:06,  4.51it/s]Corrupt JPEG data: premature end of data segment
+      10/20      7.47G      3.024      1.496      1.979       1124        640:  99%|█████████▉| 1019/1027 [05:45<00:01,  4.91it/s]Corrupt JPEG data: 10773 extraneous bytes before marker 0xd9
+      10/20      7.47G      3.025      1.497      1.979       2160        640: 100%|██████████| 1027/1027 [05:54<00:00,  2.90it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  14%|█▎        | 5/37 [00:23<02:58,  5.59s/it]Corrupt JPEG data: 305 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  38%|███▊      | 14/37 [00:30<00:11,  1.96it/s]Corrupt JPEG data: 786 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  46%|████▌     | 17/37 [00:31<00:06,  3.01it/s]Corrupt JPEG data: 366 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  95%|█████████▍| 35/37 [00:38<00:00,  3.15it/s]Corrupt JPEG data: premature end of data segment
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 37/37 [00:41<00:00,  1.13s/it]
+                   all        588      90967      0.852      0.773      0.854       0.53
+Closing dataloader mosaic
+Corrupt JPEG data: premature end of data segment
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      11/20      4.42G      2.992        1.5      2.026       1052        640:   5%|▌         | 53/1027 [00:09<02:37,  6.20it/s]Corrupt JPEG data: 96 extraneous bytes before marker 0xd9
+      11/20      4.42G      2.981      1.498      2.026       1141        640:   7%|▋         | 73/1027 [00:12<02:22,  6.70it/s]Corrupt JPEG data: premature end of data segment
+      11/20      4.42G      2.989       1.51      2.024       1057        640:  13%|█▎        | 137/1027 [00:22<02:27,  6.03it/s]Corrupt JPEG data: 520 extraneous bytes before marker 0xd9
+      11/20      4.42G      2.987       1.51      2.024       1081        640:  15%|█▍        | 152/1027 [00:24<02:09,  6.74it/s]Corrupt JPEG data: premature end of data segment
+      11/20      4.42G          3      1.515      2.026       1233        640:  16%|█▋        | 168/1027 [00:27<02:18,  6.21it/s]Corrupt JPEG data: 784 extraneous bytes before marker 0xd9
+      11/20      4.42G      3.004      1.518       2.02       1266        640:  23%|██▎       | 239/1027 [00:38<02:03,  6.40it/s]Corrupt JPEG data: 12658 extraneous bytes before marker 0xd2
+      11/20      4.42G      2.988      1.507      2.019       1196        640:  34%|███▍      | 350/1027 [00:56<01:48,  6.24it/s]Corrupt JPEG data: 41 extraneous bytes before marker 0xd9
+      11/20      4.42G      2.987      1.507      2.019       1048        640:  35%|███▌      | 361/1027 [00:58<01:44,  6.34it/s]Corrupt JPEG data: premature end of data segment
+      11/20      4.42G      2.981      1.502      2.018       1034        640:  42%|████▏     | 428/1027 [01:09<01:37,  6.17it/s]Corrupt JPEG data: premature end of data segment
+      11/20      4.42G      2.984      1.501      2.017       1179        640:  45%|████▌     | 466/1027 [01:15<01:26,  6.52it/s]Corrupt JPEG data: premature end of data segment
+      11/20      4.42G      2.989      1.502      2.018       1224        640:  53%|█████▎    | 545/1027 [01:27<01:16,  6.28it/s]Corrupt JPEG data: premature end of data segment
+      11/20      4.42G      2.995      1.503      2.018       1067        640:  58%|█████▊    | 592/1027 [01:35<01:09,  6.30it/s]Corrupt JPEG data: 4085 extraneous bytes before marker 0xd9
+      11/20      4.42G      2.996      1.505      2.018        984        640:  61%|██████    | 622/1027 [01:40<01:05,  6.21it/s]Corrupt JPEG data: 2464 extraneous bytes before marker 0xd9
+      11/20      4.42G      2.994      1.505      2.018       1164        640:  62%|██████▏   | 634/1027 [01:42<01:02,  6.26it/s]Corrupt JPEG data: premature end of data segment
+      11/20      4.42G      2.994      1.504      2.018       1095        640:  62%|██████▏   | 637/1027 [01:42<01:00,  6.48it/s]Corrupt JPEG data: 270 extraneous bytes before marker 0xd9
+      11/20      4.42G      2.985      1.495      2.016        964        640:  72%|███████▏  | 735/1027 [01:58<00:47,  6.20it/s]Corrupt JPEG data: 1260 extraneous bytes before marker 0xd9
+      11/20      4.42G      2.982      1.493      2.016       1099        640:  74%|███████▍  | 764/1027 [02:03<00:45,  5.80it/s]Corrupt JPEG data: premature end of data segment
+      11/20      4.42G      2.982      1.493      2.016       1123        640:  75%|███████▍  | 766/1027 [02:03<00:43,  6.06it/s]Corrupt JPEG data: 102 extraneous bytes before marker 0xd9
+      11/20      4.42G      2.979      1.491      2.015       1117        640:  82%|████████▏ | 842/1027 [02:15<00:27,  6.68it/s]Corrupt JPEG data: premature end of data segment
+      11/20      4.42G      2.979      1.491      2.014       1264        640:  84%|████████▎ | 859/1027 [02:18<00:28,  5.81it/s]Corrupt JPEG data: 10773 extraneous bytes before marker 0xd9
+      11/20      4.42G      2.978       1.49      2.014       1152        640:  85%|████████▍ | 870/1027 [02:20<00:24,  6.35it/s]Corrupt JPEG data: premature end of data segment
+      11/20      4.42G      2.975       1.49      2.013       1060        640:  93%|█████████▎| 953/1027 [02:33<00:11,  6.46it/s]Corrupt JPEG data: 562 extraneous bytes before marker 0xd9
+      11/20      4.42G      2.977      1.491      2.014       1278        640:  96%|█████████▌| 985/1027 [02:38<00:06,  6.16it/s]Corrupt JPEG data: premature end of data segment
+      11/20      4.42G      2.978      1.491      2.014       1282        640:  97%|█████████▋| 994/1027 [02:40<00:05,  5.74it/s]Corrupt JPEG data: premature end of data segment
+      11/20      4.42G      2.979      1.491      2.014       1113        640:  98%|█████████▊| 1003/1027 [02:42<00:03,  6.12it/s]Corrupt JPEG data: premature end of data segment
+      11/20      4.42G      2.978      1.491      2.014       1087        640: 100%|██████████| 1027/1027 [02:45<00:00,  6.19it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  14%|█▎        | 5/37 [00:02<00:22,  1.41it/s]Corrupt JPEG data: 305 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  24%|██▍       | 9/37 [00:10<00:47,  1.71s/it]Corrupt JPEG data: 786 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  38%|███▊      | 14/37 [00:20<00:43,  1.89s/it]Corrupt JPEG data: 366 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  92%|█████████▏| 34/37 [00:59<00:05,  1.85s/it]Corrupt JPEG data: premature end of data segment
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 37/37 [01:03<00:00,  1.72s/it]
+                   all        588      90967      0.852      0.775      0.858      0.533
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      12/20      2.62G      2.912      1.428      2.001       1038        640:   4%|▍         | 40/1027 [00:06<02:35,  6.37it/s]Corrupt JPEG data: premature end of data segment
+      12/20      3.07G      2.954      1.452      2.008        919        640:  11%|█▏        | 116/1027 [00:18<02:19,  6.55it/s]Corrupt JPEG data: premature end of data segment
+      12/20      3.53G      2.947       1.45      2.006       1404        640:  15%|█▌        | 157/1027 [00:25<02:28,  5.84it/s]Corrupt JPEG data: 10773 extraneous bytes before marker 0xd9
+      12/20      4.03G      2.963      1.457      2.009       1212        640:  17%|█▋        | 171/1027 [00:28<02:28,  5.76it/s]Corrupt JPEG data: 4085 extraneous bytes before marker 0xd9
+      12/20      4.57G      2.965       1.46      2.012        979        640:  24%|██▍       | 245/1027 [00:40<02:04,  6.28it/s]Corrupt JPEG data: premature end of data segment
+      12/20      4.57G      2.967       1.46      2.012       1130        640:  25%|██▍       | 254/1027 [00:42<02:04,  6.22it/s]Corrupt JPEG data: 270 extraneous bytes before marker 0xd9
+      12/20      4.57G      2.974      1.465      2.014       1202        640:  27%|██▋       | 280/1027 [00:46<01:58,  6.28it/s]Corrupt JPEG data: 562 extraneous bytes before marker 0xd9
+      12/20      4.57G       2.98      1.466      2.015       1144        640:  30%|███       | 313/1027 [00:51<01:56,  6.14it/s]Corrupt JPEG data: premature end of data segment
+      12/20      4.57G      2.981      1.466      2.015       1230        640:  32%|███▏      | 330/1027 [00:54<01:58,  5.89it/s]Corrupt JPEG data: premature end of data segment
+      12/20      4.57G       2.98      1.466      2.014       1112        640:  33%|███▎      | 340/1027 [00:56<01:44,  6.56it/s]Corrupt JPEG data: 96 extraneous bytes before marker 0xd9
+      12/20      4.57G       2.98      1.466      2.014       1132        640:  33%|███▎      | 341/1027 [00:56<01:44,  6.58it/s]Corrupt JPEG data: premature end of data segment
+      12/20      4.57G       2.98      1.464      2.014       1198        640:  35%|███▍      | 355/1027 [00:58<01:53,  5.91it/s]Corrupt JPEG data: 41 extraneous bytes before marker 0xd9
+      12/20      4.57G       2.97      1.462      2.012        987        640:  44%|████▍     | 454/1027 [01:14<01:32,  6.20it/s]Corrupt JPEG data: premature end of data segment
+      12/20      4.57G      2.969      1.461      2.011       1146        640:  44%|████▍     | 457/1027 [01:15<01:34,  6.01it/s]Corrupt JPEG data: premature end of data segment
+      12/20      4.57G      2.966      1.462       2.01       1261        640:  48%|████▊     | 494/1027 [01:21<01:27,  6.09it/s]Corrupt JPEG data: premature end of data segment
+      12/20      4.57G      2.963      1.457       2.01       1069        640:  55%|█████▌    | 565/1027 [01:32<01:15,  6.14it/s]Corrupt JPEG data: premature end of data segment
+      12/20      4.57G      2.963      1.455       2.01       1174        640:  56%|█████▌    | 577/1027 [01:34<01:18,  5.77it/s]Corrupt JPEG data: 2464 extraneous bytes before marker 0xd9
+      12/20      4.57G      2.963      1.455      2.009       1306        640:  56%|█████▋    | 578/1027 [01:35<01:17,  5.76it/s]Corrupt JPEG data: 520 extraneous bytes before marker 0xd9
+      12/20      4.57G      2.967      1.457      2.009       1220        640:  62%|██████▏   | 634/1027 [01:44<01:03,  6.15it/s]Corrupt JPEG data: 12658 extraneous bytes before marker 0xd2
+      12/20      4.57G      2.967      1.456      2.008       1125        640:  71%|███████   | 725/1027 [01:59<00:49,  6.05it/s]Corrupt JPEG data: 784 extraneous bytes before marker 0xd9
+      12/20      4.57G      2.964      1.456      2.007       1298        640:  76%|███████▌  | 781/1027 [02:08<00:43,  5.69it/s]Corrupt JPEG data: 102 extraneous bytes before marker 0xd9
+      12/20      4.57G      2.963      1.455      2.006       1109        640:  80%|███████▉  | 817/1027 [02:14<00:34,  6.04it/s]Corrupt JPEG data: premature end of data segment
+      12/20      4.57G      2.963      1.456      2.006       1094        640:  80%|███████▉  | 821/1027 [02:14<00:32,  6.36it/s]Corrupt JPEG data: premature end of data segment
+      12/20      4.57G      2.961      1.456      2.006       1036        640:  86%|████████▌ | 880/1027 [02:24<00:22,  6.51it/s]Corrupt JPEG data: premature end of data segment
+      12/20      5.14G      2.962      1.458      2.006       1047        640:  90%|█████████ | 925/1027 [02:31<00:15,  6.40it/s]Corrupt JPEG data: premature end of data segment
+      12/20      5.14G      2.963      1.458      2.006       1175        640:  94%|█████████▍| 967/1027 [02:38<00:09,  6.14it/s]Corrupt JPEG data: 1260 extraneous bytes before marker 0xd9
+      12/20      5.14G      2.962      1.458      2.006        931        640: 100%|██████████| 1027/1027 [02:48<00:00,  6.09it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  14%|█▎        | 5/37 [00:21<02:51,  5.37s/it]Corrupt JPEG data: 305 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  38%|███▊      | 14/37 [00:28<00:11,  2.01it/s]Corrupt JPEG data: 786 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  46%|████▌     | 17/37 [00:28<00:06,  2.98it/s]Corrupt JPEG data: 366 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  95%|█████████▍| 35/37 [00:36<00:00,  2.98it/s]Corrupt JPEG data: premature end of data segment
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 37/37 [00:40<00:00,  1.09s/it]
+                   all        588      90967      0.853       0.77      0.855      0.533
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      13/20      2.17G      2.947      1.424      2.002       1150        640:   1%|▏         | 15/1027 [00:02<02:45,  6.13it/s]Corrupt JPEG data: premature end of data segment
+      13/20      2.75G       2.92      1.429      1.994       1059        640:   6%|▋         | 66/1027 [00:10<02:51,  5.62it/s]Corrupt JPEG data: premature end of data segment
+      13/20      2.75G      2.905      1.421      1.995       1149        640:   8%|▊         | 84/1027 [00:13<02:22,  6.63it/s]Corrupt JPEG data: 102 extraneous bytes before marker 0xd9
+      13/20      4.27G      2.933       1.43      1.998       1169        640:  14%|█▎        | 139/1027 [00:22<02:30,  5.91it/s]Corrupt JPEG data: 96 extraneous bytes before marker 0xd9
+Corrupt JPEG data: premature end of data segment
+      13/20      4.27G      2.931      1.427      1.999       1107        640:  14%|█▍        | 144/1027 [00:23<02:25,  6.08it/s]Corrupt JPEG data: premature end of data segment
+      13/20      4.27G      2.929      1.427      1.998       1146        640:  15%|█▍        | 152/1027 [00:25<02:25,  6.01it/s]Corrupt JPEG data: premature end of data segment
+      13/20      4.27G      2.942      1.431      1.998       1157        640:  19%|█▊        | 190/1027 [00:31<02:18,  6.03it/s]Corrupt JPEG data: 12658 extraneous bytes before marker 0xd2
+      13/20      4.27G      2.941       1.43      1.999       1347        640:  19%|█▉        | 198/1027 [00:32<02:35,  5.33it/s]Corrupt JPEG data: 562 extraneous bytes before marker 0xd9
+      13/20      4.27G      2.953      1.437      2.001       1268        640:  23%|██▎       | 233/1027 [00:38<02:09,  6.14it/s]Corrupt JPEG data: 4085 extraneous bytes before marker 0xd9
+      13/20      4.27G      2.947      1.435      2.001       1111        640:  26%|██▋       | 270/1027 [00:44<02:08,  5.88it/s]Corrupt JPEG data: premature end of data segment
+      13/20      4.27G       2.95      1.435      2.001        901        640:  29%|██▉       | 297/1027 [00:49<01:58,  6.16it/s]Corrupt JPEG data: 520 extraneous bytes before marker 0xd9
+      13/20      4.27G      2.951      1.434      2.002       1009        640:  30%|███       | 313/1027 [00:51<01:57,  6.07it/s]Corrupt JPEG data: premature end of data segment
+      13/20      4.27G      2.951      1.434      2.003       1096        640:  33%|███▎      | 334/1027 [00:55<01:57,  5.88it/s]Corrupt JPEG data: premature end of data segment
+      13/20      4.27G      2.949      1.432      2.002       1045        640:  33%|███▎      | 343/1027 [00:57<01:55,  5.92it/s]Corrupt JPEG data: 41 extraneous bytes before marker 0xd9
+      13/20      4.27G      2.947      1.431      2.001       1206        640:  34%|███▍      | 347/1027 [00:57<01:55,  5.90it/s]Corrupt JPEG data: 10773 extraneous bytes before marker 0xd9
+      13/20      4.27G      2.946      1.432      2.002       1095        640:  34%|███▍      | 350/1027 [00:58<01:59,  5.68it/s]Corrupt JPEG data: premature end of data segment
+      13/20      4.27G      2.945      1.431      2.002       1152        640:  36%|███▌      | 366/1027 [01:00<01:52,  5.85it/s]Corrupt JPEG data: 2464 extraneous bytes before marker 0xd9
+      13/20      4.27G      2.947      1.434      2.001       1126        640:  43%|████▎     | 444/1027 [01:14<01:36,  6.07it/s]Corrupt JPEG data: 784 extraneous bytes before marker 0xd9
+      13/20      4.27G      2.937      1.432      1.999       1434        640:  53%|█████▎    | 543/1027 [01:30<01:27,  5.55it/s]Corrupt JPEG data: premature end of data segment
+      13/20      4.27G      2.936      1.432          2       1261        640:  60%|██████    | 621/1027 [01:44<01:07,  6.04it/s]Corrupt JPEG data: premature end of data segment
+      13/20      4.27G      2.939      1.434          2       1416        640:  64%|██████▎   | 653/1027 [01:49<01:04,  5.79it/s]Corrupt JPEG data: 1260 extraneous bytes before marker 0xd9
+      13/20      4.27G      2.939      1.434      2.001        979        640:  64%|██████▍   | 655/1027 [01:49<01:02,  5.96it/s]Corrupt JPEG data: premature end of data segment
+      13/20      4.27G       2.94      1.435      2.001       1079        640:  64%|██████▍   | 658/1027 [01:50<01:02,  5.91it/s]Corrupt JPEG data: premature end of data segment
+      13/20      4.85G      2.941      1.435      2.001       1056        640:  79%|███████▉  | 816/1027 [02:17<00:35,  5.87it/s]Corrupt JPEG data: premature end of data segment
+      13/20      4.85G      2.939      1.436      1.999       1050        640:  88%|████████▊ | 907/1027 [02:32<00:20,  5.91it/s]Corrupt JPEG data: 270 extraneous bytes before marker 0xd9
+      13/20      4.85G       2.94      1.436          2        944        640:  99%|█████████▉| 1015/1027 [02:50<00:02,  5.90it/s]Corrupt JPEG data: 96 extraneous bytes before marker 0xd9
+      13/20      4.85G       2.94      1.435          2       1076        640: 100%|██████████| 1027/1027 [02:52<00:00,  5.94it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  14%|█▎        | 5/37 [00:03<00:31,  1.01it/s]Corrupt JPEG data: 305 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  24%|██▍       | 9/37 [00:17<01:20,  2.87s/it]Corrupt JPEG data: 786 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  38%|███▊      | 14/37 [00:34<01:16,  3.32s/it]Corrupt JPEG data: 366 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  92%|█████████▏| 34/37 [01:37<00:07,  2.46s/it]Corrupt JPEG data: premature end of data segment
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 37/37 [01:43<00:00,  2.81s/it]
+                   all        588      90967      0.864      0.782      0.864      0.539
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      14/20      2.25G      3.098      1.589      2.023       1034        640:   1%|          | 9/1027 [00:01<02:40,  6.36it/s]Corrupt JPEG data: 12658 extraneous bytes before marker 0xd2
+      14/20      3.46G      2.951      1.444      1.999       1056        640:  10%|█         | 105/1027 [00:17<02:26,  6.29it/s]Corrupt JPEG data: premature end of data segment
+      14/20      3.46G      2.953      1.444      2.004       1125        640:  12%|█▏        | 120/1027 [00:19<02:29,  6.05it/s]Corrupt JPEG data: 102 extraneous bytes before marker 0xd9
+      14/20      3.46G      2.951      1.437      2.004       1060        640:  13%|█▎        | 136/1027 [00:22<02:19,  6.39it/s]Corrupt JPEG data: premature end of data segment
+      14/20      3.46G       2.95      1.434      2.004       1094        640:  15%|█▍        | 153/1027 [00:25<02:14,  6.52it/s]Corrupt JPEG data: premature end of data segment
+      14/20      3.46G      2.944       1.43      2.002       1244        640:  21%|██        | 211/1027 [00:34<02:18,  5.87it/s]Corrupt JPEG data: 270 extraneous bytes before marker 0xd9
+      14/20      3.46G      2.946      1.426      2.002       1223        640:  23%|██▎       | 235/1027 [00:38<02:24,  5.46it/s]Corrupt JPEG data: 562 extraneous bytes before marker 0xd9
+      14/20      3.46G      2.949      1.428      2.001       1227        640:  25%|██▍       | 255/1027 [00:41<02:01,  6.35it/s]Corrupt JPEG data: 10773 extraneous bytes before marker 0xd9
+      14/20      3.46G      2.945      1.427          2        921        640:  26%|██▌       | 265/1027 [00:43<01:57,  6.51it/s]Corrupt JPEG data: premature end of data segment
+      14/20      3.46G      2.946      1.428          2       1171        640:  26%|██▌       | 266/1027 [00:43<02:05,  6.05it/s]Corrupt JPEG data: 4085 extraneous bytes before marker 0xd9
+      14/20      3.46G      2.947      1.429      2.001       1033        640:  30%|██▉       | 305/1027 [00:49<02:03,  5.84it/s]Corrupt JPEG data: premature end of data segment
+      14/20      3.98G      2.948      1.431      2.001       1347        640:  32%|███▏      | 325/1027 [00:53<02:05,  5.59it/s]Corrupt JPEG data: 41 extraneous bytes before marker 0xd9
+      14/20      3.98G      2.946      1.429          2       1120        640:  35%|███▌      | 362/1027 [00:59<01:42,  6.51it/s]Corrupt JPEG data: premature end of data segment
+      14/20      3.98G      2.945      1.428          2       1048        640:  35%|███▌      | 363/1027 [00:59<01:46,  6.26it/s]Corrupt JPEG data: 1260 extraneous bytes before marker 0xd9
+      14/20      3.98G      2.946      1.429      2.001       1315        640:  36%|███▌      | 366/1027 [01:00<01:50,  5.99it/s]Corrupt JPEG data: 784 extraneous bytes before marker 0xd9
+      14/20      3.98G       2.94      1.425      1.999       1152        640:  45%|████▍     | 460/1027 [01:15<01:31,  6.19it/s]Corrupt JPEG data: premature end of data segment
+      14/20      3.98G      2.942      1.424      1.998       1092        640:  47%|████▋     | 486/1027 [01:19<01:26,  6.29it/s]Corrupt JPEG data: 2464 extraneous bytes before marker 0xd9
+      14/20      3.98G      2.935      1.421      1.997       1323        640:  52%|█████▏    | 538/1027 [01:28<01:23,  5.84it/s]Corrupt JPEG data: premature end of data segment
+      14/20      3.98G      2.934      1.422      1.996        944        640:  56%|█████▌    | 577/1027 [01:34<01:12,  6.25it/s]Corrupt JPEG data: premature end of data segment
+      14/20      3.98G      2.934      1.421      1.996       1074        640:  59%|█████▉    | 610/1027 [01:39<01:05,  6.39it/s]Corrupt JPEG data: premature end of data segment
+      14/20      3.98G      2.934      1.422      1.996        941        640:  63%|██████▎   | 647/1027 [01:45<01:02,  6.09it/s]Corrupt JPEG data: premature end of data segment
+      14/20      3.98G      2.935      1.422      1.996       1137        640:  65%|██████▌   | 669/1027 [01:49<01:03,  5.65it/s]Corrupt JPEG data: premature end of data segment
+      14/20      3.98G      2.935      1.422      1.996       1102        640:  66%|██████▌   | 675/1027 [01:50<00:57,  6.14it/s]Corrupt JPEG data: premature end of data segment
+      14/20      4.54G      2.933      1.419      1.996       1087        640:  76%|███████▋  | 785/1027 [02:08<00:38,  6.30it/s]Corrupt JPEG data: 520 extraneous bytes before marker 0xd9
+      14/20      5.12G      2.931      1.418      1.995       1088        640:  91%|█████████ | 931/1027 [02:31<00:15,  6.02it/s]Corrupt JPEG data: premature end of data segment
+      14/20      5.12G      2.929      1.417      1.996       1346        640: 100%|██████████| 1027/1027 [02:47<00:00,  6.14it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  14%|█▎        | 5/37 [00:20<02:45,  5.17s/it]Corrupt JPEG data: 305 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  38%|███▊      | 14/37 [00:26<00:10,  2.12it/s]Corrupt JPEG data: 786 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  46%|████▌     | 17/37 [00:27<00:06,  3.14it/s]Corrupt JPEG data: 366 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  95%|█████████▍| 35/37 [00:33<00:00,  3.21it/s]Corrupt JPEG data: premature end of data segment
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 37/37 [00:37<00:00,  1.01s/it]
+                   all        588      90967      0.867      0.781      0.866      0.541
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      15/20      3.43G      2.933      1.402      1.994       1116        640:  10%|█         | 106/1027 [00:17<02:25,  6.33it/s]Corrupt JPEG data: premature end of data segment
+      15/20      3.43G       2.93      1.401      1.994       1051        640:  10%|█         | 107/1027 [00:17<02:23,  6.43it/s]Corrupt JPEG data: 12658 extraneous bytes before marker 0xd2
+      15/20      3.43G      2.913      1.394      1.988       1045        640:  24%|██▍       | 246/1027 [00:39<01:58,  6.57it/s]Corrupt JPEG data: premature end of data segment
+      15/20      4.29G      2.914      1.397      1.992       1292        640:  33%|███▎      | 335/1027 [00:54<01:54,  6.03it/s]Corrupt JPEG data: premature end of data segment
+      15/20      4.29G      2.912      1.395      1.991       1081        640:  33%|███▎      | 338/1027 [00:54<01:51,  6.18it/s]Corrupt JPEG data: premature end of data segment
+      15/20      4.29G       2.91      1.394       1.99       1044        640:  34%|███▎      | 346/1027 [00:56<01:47,  6.34it/s]Corrupt JPEG data: premature end of data segment
+      15/20      4.29G      2.914      1.399      1.992       1154        640:  36%|███▌      | 372/1027 [01:00<01:46,  6.14it/s]Corrupt JPEG data: 96 extraneous bytes before marker 0xd9
+      15/20      4.29G      2.915      1.399      1.992       1163        640:  39%|███▉      | 399/1027 [01:04<01:38,  6.38it/s]Corrupt JPEG data: 41 extraneous bytes before marker 0xd9
+      15/20      4.29G      2.914      1.398      1.992       1045        640:  39%|███▉      | 401/1027 [01:04<01:40,  6.24it/s]Corrupt JPEG data: premature end of data segment
+      15/20      4.29G      2.912      1.397      1.992       1125        640:  40%|███▉      | 407/1027 [01:05<01:32,  6.69it/s]Corrupt JPEG data: 10773 extraneous bytes before marker 0xd9
+      15/20      4.29G      2.916      1.399      1.991        988        640:  44%|████▎     | 448/1027 [01:12<01:32,  6.27it/s]Corrupt JPEG data: premature end of data segment
+      15/20      4.29G      2.915      1.398      1.991       1128        640:  45%|████▍     | 461/1027 [01:14<01:32,  6.13it/s]Corrupt JPEG data: premature end of data segment
+      15/20      4.29G      2.918        1.4      1.991       1196        640:  46%|████▌     | 470/1027 [01:16<01:31,  6.07it/s]Corrupt JPEG data: 2464 extraneous bytes before marker 0xd9
+      15/20      4.29G      2.918      1.401      1.991       1164        640:  46%|████▋     | 476/1027 [01:16<01:29,  6.18it/s]Corrupt JPEG data: 520 extraneous bytes before marker 0xd9
+      15/20      4.29G      2.919      1.401      1.991       1050        640:  48%|████▊     | 497/1027 [01:20<01:25,  6.23it/s]Corrupt JPEG data: premature end of data segment
+      15/20      4.29G      2.918      1.401      1.991       1115        640:  51%|█████     | 524/1027 [01:24<01:16,  6.59it/s]Corrupt JPEG data: 1260 extraneous bytes before marker 0xd9
+      15/20      4.29G      2.918      1.401       1.99       1317        640:  51%|█████     | 525/1027 [01:24<01:19,  6.34it/s]Corrupt JPEG data: premature end of data segment
+      15/20      4.29G      2.916      1.402      1.991       1192        640:  54%|█████▍    | 559/1027 [01:30<01:13,  6.33it/s]Corrupt JPEG data: premature end of data segment
+      15/20      4.29G      2.916      1.402      1.991       1104        640:  56%|█████▋    | 578/1027 [01:33<01:09,  6.44it/s]Corrupt JPEG data: 102 extraneous bytes before marker 0xd9
+      15/20      4.29G      2.913      1.402      1.991       1186        640:  64%|██████▍   | 662/1027 [01:47<00:55,  6.53it/s]Corrupt JPEG data: 4085 extraneous bytes before marker 0xd9
+      15/20      4.29G      2.913      1.402      1.991       1216        640:  68%|██████▊   | 700/1027 [01:53<00:51,  6.32it/s]Corrupt JPEG data: premature end of data segment
+      15/20      4.29G       2.91      1.399       1.99       1096        640:  80%|████████  | 823/1027 [02:13<00:31,  6.38it/s]Corrupt JPEG data: 270 extraneous bytes before marker 0xd9
+      15/20      4.29G      2.909      1.399       1.99       1012        640:  84%|████████▍ | 866/1027 [02:19<00:24,  6.61it/s]Corrupt JPEG data: premature end of data segment
+      15/20      4.29G      2.912      1.399      1.992       1122        640:  89%|████████▊ | 909/1027 [02:26<00:18,  6.31it/s]Corrupt JPEG data: premature end of data segment
+      15/20      4.29G      2.912        1.4      1.992        964        640:  91%|█████████ | 934/1027 [02:30<00:14,  6.32it/s]Corrupt JPEG data: 562 extraneous bytes before marker 0xd9
+      15/20      4.29G      2.915        1.4      1.991       1090        640:  98%|█████████▊| 1006/1027 [02:42<00:03,  6.43it/s]Corrupt JPEG data: 784 extraneous bytes before marker 0xd9
+      15/20      4.29G      2.912      1.399      1.991       1175        640: 100%|██████████| 1027/1027 [02:45<00:00,  6.20it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  14%|█▎        | 5/37 [00:02<00:22,  1.41it/s]Corrupt JPEG data: 305 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  24%|██▍       | 9/37 [00:13<01:02,  2.22s/it]Corrupt JPEG data: 786 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  38%|███▊      | 14/37 [00:26<00:58,  2.56s/it]Corrupt JPEG data: 366 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  92%|█████████▏| 34/37 [01:15<00:05,  1.93s/it]Corrupt JPEG data: premature end of data segment
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 37/37 [01:19<00:00,  2.16s/it]
+                   all        588      90967      0.865      0.786      0.866      0.541
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      16/20      2.92G      2.936        1.4      1.984       1270        640:   2%|▏         | 24/1027 [00:04<02:45,  6.04it/s]Corrupt JPEG data: 96 extraneous bytes before marker 0xd9
+      16/20      3.39G      2.924      1.396      1.976        945        640:   4%|▎         | 36/1027 [00:06<02:31,  6.52it/s]Corrupt JPEG data: premature end of data segment
+      16/20      3.39G      2.938      1.406      1.984       1024        640:   4%|▍         | 46/1027 [00:07<02:36,  6.29it/s]Corrupt JPEG data: premature end of data segment
+      16/20      3.39G       2.92      1.387      1.981       1200        640:   7%|▋         | 69/1027 [00:11<02:32,  6.27it/s]Corrupt JPEG data: premature end of data segment
+      16/20      3.39G      2.916      1.396      1.985        986        640:  10%|▉         | 102/1027 [00:16<02:25,  6.37it/s]Corrupt JPEG data: 12658 extraneous bytes before marker 0xd2
+      16/20      3.39G      2.906      1.395      1.985       1141        640:  11%|█         | 113/1027 [00:18<02:26,  6.22it/s]Corrupt JPEG data: premature end of data segment
+      16/20      3.39G      2.907      1.395      1.984       1123        640:  13%|█▎        | 131/1027 [00:21<02:21,  6.32it/s]Corrupt JPEG data: 562 extraneous bytes before marker 0xd9
+      16/20      3.39G      2.902      1.395      1.984       1122        640:  18%|█▊        | 181/1027 [00:29<02:14,  6.27it/s]Corrupt JPEG data: 10773 extraneous bytes before marker 0xd9
+      16/20      3.39G      2.901      1.396      1.984       1112        640:  19%|█▉        | 195/1027 [00:31<02:14,  6.20it/s]Corrupt JPEG data: 520 extraneous bytes before marker 0xd9
+      16/20      3.39G      2.901      1.396      1.985       1114        640:  19%|█▉        | 197/1027 [00:31<02:16,  6.06it/s]Corrupt JPEG data: premature end of data segment
+      16/20      3.39G      2.902      1.393      1.983       1044        640:  23%|██▎       | 241/1027 [00:38<02:07,  6.18it/s]Corrupt JPEG data: premature end of data segment
+      16/20      3.92G      2.902      1.392      1.983       1080        640:  34%|███▍      | 349/1027 [00:55<01:48,  6.25it/s]Corrupt JPEG data: 41 extraneous bytes before marker 0xd9
+      16/20      3.92G      2.902       1.39      1.983       1001        640:  36%|███▌      | 372/1027 [00:59<01:38,  6.62it/s]Corrupt JPEG data: premature end of data segment
+      16/20      3.92G      2.902      1.389      1.983       1111        640:  37%|███▋      | 378/1027 [01:00<01:43,  6.27it/s]Corrupt JPEG data: premature end of data segment
+      16/20      3.92G        2.9      1.386      1.983       1089        640:  44%|████▍     | 451/1027 [01:12<01:34,  6.09it/s]Corrupt JPEG data: premature end of data segment
+      16/20      3.92G      2.902      1.386      1.983       1066        640:  45%|████▌     | 465/1027 [01:14<01:29,  6.31it/s]Corrupt JPEG data: 102 extraneous bytes before marker 0xd9
+      16/20      3.92G      2.901      1.386      1.983       1049        640:  53%|█████▎    | 543/1027 [01:27<01:15,  6.39it/s]Corrupt JPEG data: 2464 extraneous bytes before marker 0xd9
+      16/20       4.5G      2.899      1.385      1.982       1105        640:  60%|█████▉    | 616/1027 [01:39<01:04,  6.36it/s]Corrupt JPEG data: 784 extraneous bytes before marker 0xd9
+      16/20       4.5G      2.893       1.38      1.982       1101        640:  70%|██████▉   | 715/1027 [01:54<00:50,  6.22it/s]Corrupt JPEG data: premature end of data segment
+      16/20       4.5G      2.896      1.381      1.983       1109        640:  71%|███████▏  | 733/1027 [01:57<00:47,  6.23it/s]Corrupt JPEG data: 1260 extraneous bytes before marker 0xd9
+      16/20       4.5G      2.896      1.381      1.983       1292        640:  72%|███████▏  | 738/1027 [01:58<00:49,  5.85it/s]Corrupt JPEG data: premature end of data segment
+      16/20       4.5G      2.898      1.383      1.983       1624        640:  75%|███████▌  | 771/1027 [02:03<00:47,  5.35it/s]Corrupt JPEG data: premature end of data segment
+      16/20       4.5G      2.898      1.382      1.983       1221        640:  75%|███████▌  | 775/1027 [02:04<00:40,  6.21it/s]Corrupt JPEG data: premature end of data segment
+      16/20       4.5G      2.896      1.382      1.983       1069        640:  78%|███████▊  | 804/1027 [02:09<00:35,  6.34it/s]Corrupt JPEG data: 270 extraneous bytes before marker 0xd9
+      16/20       4.5G      2.897      1.383      1.983       1050        640:  97%|█████████▋| 992/1027 [02:39<00:05,  6.20it/s]Corrupt JPEG data: premature end of data segment
+      16/20       4.5G      2.897      1.384      1.984       1334        640:  98%|█████████▊| 1004/1027 [02:41<00:03,  6.05it/s]Corrupt JPEG data: 4085 extraneous bytes before marker 0xd9
+      16/20       4.5G      2.896      1.383      1.984       1225        640:  99%|█████████▉| 1017/1027 [02:43<00:01,  6.13it/s]Corrupt JPEG data: premature end of data segment
+      16/20       4.5G      2.896      1.383      1.984       1247        640: 100%|██████████| 1027/1027 [02:45<00:00,  6.22it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  24%|██▍       | 9/37 [00:11<00:26,  1.06it/s]Corrupt JPEG data: 305 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  38%|███▊      | 14/37 [00:12<00:08,  2.83it/s]Corrupt JPEG data: 786 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  46%|████▌     | 17/37 [00:13<00:05,  3.58it/s]Corrupt JPEG data: 366 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 37/37 [00:18<00:00,  2.01it/s]
+                   all        588      90967       0.87      0.791       0.87      0.546
+Corrupt JPEG data: premature end of data segment
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      17/20      2.45G      2.843      1.371      1.956       1016        640:   1%|          | 12/1027 [00:02<02:46,  6.09it/s]Corrupt JPEG data: 270 extraneous bytes before marker 0xd9
+      17/20      2.84G      2.867      1.368      1.973       1224        640:   7%|▋         | 71/1027 [00:11<02:35,  6.14it/s]Corrupt JPEG data: 520 extraneous bytes before marker 0xd9
+      17/20      3.28G      2.865       1.36      1.971       1083        640:  10%|█         | 104/1027 [00:17<02:49,  5.44it/s]Corrupt JPEG data: 562 extraneous bytes before marker 0xd9
+      17/20      3.28G       2.87      1.362      1.973       1039        640:  11%|█         | 109/1027 [00:17<02:26,  6.26it/s]Corrupt JPEG data: 10773 extraneous bytes before marker 0xd9
+      17/20      3.28G      2.864      1.362      1.977        997        640:  12%|█▏        | 123/1027 [00:20<02:24,  6.27it/s]Corrupt JPEG data: premature end of data segment
+      17/20      3.28G      2.865      1.362      1.976       1192        640:  12%|█▏        | 124/1027 [00:20<02:25,  6.20it/s]Corrupt JPEG data: premature end of data segment
+      17/20      3.81G      2.866      1.363      1.976       1194        640:  24%|██▍       | 245/1027 [00:39<02:00,  6.50it/s]Corrupt JPEG data: 4085 extraneous bytes before marker 0xd9
+      17/20      3.81G      2.867      1.363      1.976       1157        640:  28%|██▊       | 285/1027 [00:46<01:55,  6.40it/s]Corrupt JPEG data: 1260 extraneous bytes before marker 0xd9
+      17/20      3.81G       2.87      1.364      1.976        986        640:  33%|███▎      | 334/1027 [00:53<01:41,  6.81it/s]Corrupt JPEG data: 784 extraneous bytes before marker 0xd9
+      17/20      3.81G      2.873      1.366      1.976       1096        640:  37%|███▋      | 378/1027 [01:00<01:45,  6.17it/s]Corrupt JPEG data: 2464 extraneous bytes before marker 0xd9
+      17/20      3.81G      2.878      1.367      1.977       1011        640:  42%|████▏     | 429/1027 [01:09<01:34,  6.30it/s]Corrupt JPEG data: premature end of data segment
+      17/20      4.38G      2.877      1.366      1.977       1046        640:  56%|█████▌    | 574/1027 [01:32<01:10,  6.40it/s]Corrupt JPEG data: 102 extraneous bytes before marker 0xd9
+      17/20      4.38G      2.877      1.366      1.977       1167        640:  57%|█████▋    | 581/1027 [01:33<01:09,  6.41it/s]Corrupt JPEG data: premature end of data segment
+      17/20      4.38G      2.877      1.366      1.978       1164        640:  59%|█████▊    | 603/1027 [01:37<01:08,  6.18it/s]Corrupt JPEG data: 12658 extraneous bytes before marker 0xd2
+      17/20      4.38G      2.878      1.365      1.977       1144        640:  60%|██████    | 621/1027 [01:40<01:02,  6.45it/s]Corrupt JPEG data: premature end of data segment
+      17/20      4.38G      2.881      1.367      1.977       1102        640:  65%|██████▌   | 671/1027 [01:48<00:53,  6.62it/s]Corrupt JPEG data: 41 extraneous bytes before marker 0xd9
+      17/20      4.38G      2.882      1.367      1.977       1051        640:  68%|██████▊   | 698/1027 [01:52<00:53,  6.15it/s]Corrupt JPEG data: premature end of data segment
+      17/20      4.38G      2.885      1.368      1.977       1170        640:  70%|███████   | 721/1027 [01:56<00:47,  6.46it/s]Corrupt JPEG data: premature end of data segment
+      17/20      4.38G      2.882      1.366      1.976       1176        640:  75%|███████▍  | 767/1027 [02:03<00:46,  5.60it/s]Corrupt JPEG data: premature end of data segment
+      17/20      4.38G      2.883      1.366      1.976       1183        640:  80%|████████  | 822/1027 [02:12<00:33,  6.16it/s]Corrupt JPEG data: premature end of data segment
+      17/20      4.38G      2.883      1.366      1.976       1212        640:  83%|████████▎ | 851/1027 [02:17<00:28,  6.22it/s]Corrupt JPEG data: premature end of data segment
+      17/20      4.38G      2.884      1.366      1.975       1109        640:  92%|█████████▏| 944/1027 [02:32<00:12,  6.40it/s]Corrupt JPEG data: 96 extraneous bytes before marker 0xd9
+      17/20      4.38G      2.883      1.366      1.976        969        640:  96%|█████████▌| 983/1027 [02:38<00:06,  6.56it/s]Corrupt JPEG data: premature end of data segment
+      17/20      4.38G      2.883      1.366      1.975       1194        640:  96%|█████████▌| 988/1027 [02:39<00:06,  6.09it/s]Corrupt JPEG data: premature end of data segment
+      17/20      4.38G      2.884      1.366      1.975       1382        640:  98%|█████████▊| 1007/1027 [02:42<00:03,  5.99it/s]Corrupt JPEG data: premature end of data segment
+      17/20      4.38G      2.885      1.367      1.976        943        640: 100%|██████████| 1027/1027 [02:45<00:00,  6.20it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  14%|█▎        | 5/37 [00:03<00:27,  1.18it/s]Corrupt JPEG data: 305 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  24%|██▍       | 9/37 [00:15<01:14,  2.65s/it]Corrupt JPEG data: 786 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  38%|███▊      | 14/37 [00:31<01:11,  3.11s/it]Corrupt JPEG data: 366 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  92%|█████████▏| 34/37 [01:29<00:06,  2.21s/it]Corrupt JPEG data: premature end of data segment
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 37/37 [01:35<00:00,  2.58s/it]
+                   all        588      90967      0.872      0.791      0.871      0.547
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      18/20      2.98G      2.861      1.383       1.97       1091        640:   4%|▎         | 37/1027 [00:06<02:29,  6.60it/s]Corrupt JPEG data: premature end of data segment
+      18/20      3.29G      2.885      1.377      1.979       1365        640:   9%|▉         | 90/1027 [00:14<02:33,  6.10it/s]Corrupt JPEG data: premature end of data segment
+      18/20      3.71G       2.88      1.369      1.977        977        640:  11%|█         | 115/1027 [00:18<02:25,  6.27it/s]Corrupt JPEG data: 784 extraneous bytes before marker 0xd9
+      18/20      3.71G      2.868      1.362      1.977       1042        640:  13%|█▎        | 130/1027 [00:20<02:11,  6.81it/s]Corrupt JPEG data: 2464 extraneous bytes before marker 0xd9
+      18/20      3.71G      2.874      1.364      1.976       1106        640:  14%|█▍        | 144/1027 [00:23<02:23,  6.17it/s]Corrupt JPEG data: premature end of data segment
+      18/20      3.71G       2.88      1.365      1.977       1349        640:  15%|█▍        | 151/1027 [00:24<02:36,  5.61it/s]Corrupt JPEG data: 562 extraneous bytes before marker 0xd9
+      18/20      3.71G      2.881      1.365      1.979       1112        640:  16%|█▌        | 165/1027 [00:26<02:15,  6.38it/s]Corrupt JPEG data: premature end of data segment
+      18/20      4.18G      2.878      1.361      1.977        911        640:  20%|█▉        | 203/1027 [00:32<02:05,  6.55it/s]Corrupt JPEG data: premature end of data segment
+      18/20      4.18G      2.882      1.364      1.977       1128        640:  22%|██▏       | 222/1027 [00:35<02:01,  6.61it/s]Corrupt JPEG data: 96 extraneous bytes before marker 0xd9
+      18/20      4.18G      2.881      1.367      1.977       1005        640:  25%|██▍       | 252/1027 [00:40<02:06,  6.12it/s]Corrupt JPEG data: premature end of data segment
+      18/20      4.69G      2.877      1.366      1.975       1146        640:  26%|██▌       | 265/1027 [00:42<02:12,  5.75it/s]Corrupt JPEG data: 102 extraneous bytes before marker 0xd9
+      18/20      4.69G      2.872      1.364      1.975        989        640:  31%|███       | 318/1027 [00:51<01:49,  6.48it/s]Corrupt JPEG data: 520 extraneous bytes before marker 0xd9
+      18/20      4.69G      2.878      1.368      1.975       1094        640:  34%|███▎      | 346/1027 [00:55<01:48,  6.29it/s]Corrupt JPEG data: premature end of data segment
+      18/20      4.69G      2.876      1.366      1.975       1450        640:  35%|███▌      | 360/1027 [00:58<01:52,  5.95it/s]Corrupt JPEG data: premature end of data segment
+      18/20      4.69G      2.872      1.362      1.975       1036        640:  39%|███▉      | 398/1027 [01:04<01:36,  6.50it/s]Corrupt JPEG data: 12658 extraneous bytes before marker 0xd2
+      18/20      4.69G       2.87      1.361      1.976       1372        640:  47%|████▋     | 484/1027 [01:18<01:35,  5.68it/s]Corrupt JPEG data: premature end of data segment
+      18/20      5.21G      2.867      1.355      1.975       1190        640:  56%|█████▋    | 580/1027 [01:33<01:06,  6.69it/s]Corrupt JPEG data: premature end of data segment
+      18/20      5.21G      2.869      1.356      1.974       1339        640:  64%|██████▍   | 659/1027 [01:46<00:58,  6.26it/s]Corrupt JPEG data: premature end of data segment
+      18/20      5.77G      2.868      1.354      1.973       1089        640:  70%|██████▉   | 714/1027 [01:57<01:58,  2.64it/s]Corrupt JPEG data: 4085 extraneous bytes before marker 0xd9
+      18/20      5.77G      2.866      1.353      1.974       1169        640:  74%|███████▎  | 755/1027 [02:03<00:40,  6.76it/s]Corrupt JPEG data: premature end of data segment
+      18/20      5.77G      2.867      1.353      1.974       1314        640:  74%|███████▍  | 764/1027 [02:04<00:41,  6.38it/s]Corrupt JPEG data: 10773 extraneous bytes before marker 0xd9
+      18/20      5.77G      2.867      1.354      1.973        730        640:  76%|███████▋  | 785/1027 [02:08<00:37,  6.40it/s]Corrupt JPEG data: premature end of data segment
+      18/20      5.77G      2.866      1.354      1.973       1020        640:  77%|███████▋  | 795/1027 [02:09<00:35,  6.54it/s]Corrupt JPEG data: 1260 extraneous bytes before marker 0xd9
+      18/20      6.35G      2.869      1.356      1.973       1502        640:  83%|████████▎ | 848/1027 [02:22<00:30,  5.84it/s]Corrupt JPEG data: 41 extraneous bytes before marker 0xd9
+      18/20      6.35G      2.869      1.355      1.973       1126        640:  83%|████████▎ | 851/1027 [02:22<00:29,  6.07it/s]Corrupt JPEG data: 270 extraneous bytes before marker 0xd9
+      18/20      6.35G      2.868      1.354      1.972       1224        640:  95%|█████████▍| 975/1027 [02:44<00:08,  5.89it/s]Corrupt JPEG data: premature end of data segment
+      18/20      6.35G      2.869      1.355      1.973       1002        640: 100%|█████████▉| 1022/1027 [02:52<00:00,  6.45it/s]Corrupt JPEG data: 12658 extraneous bytes before marker 0xd2
+      18/20      6.35G      2.869      1.355      1.973       1034        640: 100%|██████████| 1027/1027 [02:53<00:00,  5.93it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  14%|█▎        | 5/37 [00:26<03:22,  6.34s/it]Corrupt JPEG data: 305 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  38%|███▊      | 14/37 [00:34<00:12,  1.81it/s]Corrupt JPEG data: 786 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  46%|████▌     | 17/37 [00:35<00:07,  2.86it/s]Corrupt JPEG data: 366 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  95%|█████████▍| 35/37 [00:44<00:00,  2.59it/s]Corrupt JPEG data: premature end of data segment
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 37/37 [00:50<00:00,  1.35s/it]
+                   all        588      90967      0.873      0.795      0.875      0.549
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      19/20      2.66G      2.829      1.341      1.979       1040        640:   2%|▏         | 24/1027 [00:04<02:40,  6.24it/s]Corrupt JPEG data: premature end of data segment
+      19/20      3.43G       2.85      1.344      1.969       1221        640:   6%|▌         | 61/1027 [00:10<02:40,  6.00it/s]Corrupt JPEG data: 270 extraneous bytes before marker 0xd9
+      19/20      3.95G      2.859      1.354       1.97       1150        640:   8%|▊         | 78/1027 [00:13<02:33,  6.20it/s]Corrupt JPEG data: 562 extraneous bytes before marker 0xd9
+      19/20      3.95G      2.844      1.339      1.972       1111        640:  11%|█▏        | 118/1027 [00:19<02:29,  6.07it/s]Corrupt JPEG data: premature end of data segment
+      19/20      3.95G      2.844      1.338      1.971       1215        640:  12%|█▏        | 119/1027 [00:19<02:29,  6.08it/s]Corrupt JPEG data: premature end of data segment
+      19/20      3.95G       2.84      1.335       1.97       1141        640:  12%|█▏        | 125/1027 [00:20<02:19,  6.48it/s]Corrupt JPEG data: premature end of data segment
+      19/20      4.53G      2.849      1.337      1.971       1165        640:  23%|██▎       | 241/1027 [00:39<02:08,  6.10it/s]Corrupt JPEG data: 4085 extraneous bytes before marker 0xd9
+      19/20      4.53G      2.848      1.335      1.971       1034        640:  24%|██▍       | 250/1027 [00:40<01:55,  6.72it/s]Corrupt JPEG data: premature end of data segment
+      19/20      4.53G      2.854      1.338      1.972       1150        640:  26%|██▌       | 269/1027 [00:44<02:01,  6.25it/s]Corrupt JPEG data: 520 extraneous bytes before marker 0xd9
+      19/20      4.53G      2.857      1.338      1.971        962        640:  29%|██▊       | 293/1027 [00:48<02:00,  6.11it/s]Corrupt JPEG data: 96 extraneous bytes before marker 0xd9
+      19/20      4.53G      2.858      1.339      1.971       1250        640:  30%|██▉       | 307/1027 [00:50<01:58,  6.08it/s]Corrupt JPEG data: premature end of data segment
+      19/20      4.53G       2.86      1.339      1.971       1143        640:  31%|███▏      | 323/1027 [00:52<01:51,  6.29it/s]Corrupt JPEG data: 102 extraneous bytes before marker 0xd9
+      19/20      4.53G      2.849      1.334       1.97       1057        640:  42%|████▏     | 428/1027 [01:09<01:35,  6.28it/s]Corrupt JPEG data: 41 extraneous bytes before marker 0xd9
+      19/20      4.53G      2.849      1.335      1.969       1048        640:  49%|████▉     | 504/1027 [01:21<01:22,  6.30it/s]Corrupt JPEG data: premature end of data segment
+      19/20      4.53G       2.85      1.335      1.969       1149        640:  50%|████▉     | 509/1027 [01:22<01:22,  6.30it/s]Corrupt JPEG data: premature end of data segment
+      19/20      4.53G      2.851      1.337       1.97       1148        640:  69%|██████▊   | 704/1027 [01:54<00:52,  6.15it/s]Corrupt JPEG data: premature end of data segment
+      19/20      4.53G      2.849      1.337      1.969       1162        640:  72%|███████▏  | 743/1027 [02:00<00:44,  6.43it/s]Corrupt JPEG data: premature end of data segment
+      19/20      4.53G      2.851      1.338       1.97       1049        640:  75%|███████▍  | 770/1027 [02:04<00:38,  6.64it/s]Corrupt JPEG data: 10773 extraneous bytes before marker 0xd9
+      19/20      4.53G       2.85      1.338       1.97       1244        640:  77%|███████▋  | 788/1027 [02:07<00:39,  6.00it/s]Corrupt JPEG data: 2464 extraneous bytes before marker 0xd9
+      19/20      4.53G      2.852       1.34      1.969        996        640:  81%|████████▏ | 836/1027 [02:15<00:30,  6.19it/s]Corrupt JPEG data: premature end of data segment
+      19/20      4.53G      2.854      1.341      1.969       1112        640:  85%|████████▌ | 873/1027 [02:20<00:23,  6.59it/s]Corrupt JPEG data: premature end of data segment
+      19/20      4.53G      2.853       1.34      1.969       1210        640:  87%|████████▋ | 897/1027 [02:24<00:20,  6.21it/s]Corrupt JPEG data: 1260 extraneous bytes before marker 0xd9
+      19/20      4.53G      2.853       1.34       1.97       1077        640:  88%|████████▊ | 907/1027 [02:26<00:18,  6.32it/s]Corrupt JPEG data: 784 extraneous bytes before marker 0xd9
+      19/20      4.53G      2.852       1.34       1.97        990        640:  89%|████████▉ | 915/1027 [02:27<00:17,  6.33it/s]Corrupt JPEG data: premature end of data segment
+      19/20      4.53G      2.852      1.339      1.969       1156        640:  91%|█████████ | 936/1027 [02:30<00:14,  6.14it/s]Corrupt JPEG data: premature end of data segment
+      19/20      4.53G      2.857      1.341       1.97       1197        640: 100%|██████████| 1027/1027 [02:45<00:00,  6.21it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  14%|█▎        | 5/37 [00:03<00:27,  1.17it/s]Corrupt JPEG data: 305 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  24%|██▍       | 9/37 [00:13<01:03,  2.25s/it]Corrupt JPEG data: 786 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  38%|███▊      | 14/37 [00:27<00:59,  2.61s/it]Corrupt JPEG data: 366 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  92%|█████████▏| 34/37 [01:18<00:05,  1.93s/it]Corrupt JPEG data: premature end of data segment
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 37/37 [01:22<00:00,  2.24s/it]
+                   all        588      90967      0.874      0.793      0.875      0.551
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      20/20      3.54G      2.864      1.341      1.964       1269        640:  11%|█         | 111/1027 [00:17<02:19,  6.56it/s]Corrupt JPEG data: 784 extraneous bytes before marker 0xd9
+      20/20      3.54G      2.867      1.342      1.964        997        640:  11%|█▏        | 116/1027 [00:18<02:25,  6.26it/s]Corrupt JPEG data: premature end of data segment
+      20/20      3.54G      2.866      1.341      1.963       1125        640:  12%|█▏        | 121/1027 [00:19<02:28,  6.11it/s]Corrupt JPEG data: premature end of data segment
+      20/20      3.54G       2.86      1.342      1.965        940        640:  13%|█▎        | 134/1027 [00:21<02:08,  6.92it/s]Corrupt JPEG data: 102 extraneous bytes before marker 0xd9
+      20/20      3.54G      2.868      1.345      1.969       1287        640:  22%|██▏       | 223/1027 [00:35<02:01,  6.61it/s]Corrupt JPEG data: premature end of data segment
+      20/20      3.54G       2.87      1.346      1.969       1382        640:  22%|██▏       | 224/1027 [00:35<02:06,  6.35it/s]Corrupt JPEG data: 1260 extraneous bytes before marker 0xd9
+      20/20      3.54G      2.868      1.342      1.969       1299        640:  27%|██▋       | 275/1027 [00:44<02:03,  6.07it/s]Corrupt JPEG data: premature end of data segment
+      20/20      3.54G      2.861      1.334      1.966       1064        640:  34%|███▍      | 349/1027 [00:56<01:48,  6.25it/s]Corrupt JPEG data: premature end of data segment
+      20/20      3.54G      2.859      1.333      1.966       1209        640:  34%|███▍      | 353/1027 [00:56<01:53,  5.93it/s]Corrupt JPEG data: premature end of data segment
+      20/20      3.54G      2.863      1.334      1.967       1102        640:  37%|███▋      | 384/1027 [01:01<01:38,  6.55it/s]Corrupt JPEG data: premature end of data segment
+      20/20      3.54G      2.862      1.333      1.967       1033        640:  38%|███▊      | 395/1027 [01:03<01:39,  6.38it/s]Corrupt JPEG data: 4085 extraneous bytes before marker 0xd9
+      20/20      3.54G      2.851       1.33      1.965       1175        640:  49%|████▉     | 502/1027 [01:20<01:25,  6.17it/s]Corrupt JPEG data: 270 extraneous bytes before marker 0xd9
+      20/20      3.54G      2.853      1.331      1.965       1080        640:  52%|█████▏    | 533/1027 [01:25<01:14,  6.63it/s]Corrupt JPEG data: 520 extraneous bytes before marker 0xd9
+      20/20      3.54G      2.854      1.331      1.965       1438        640:  52%|█████▏    | 534/1027 [01:25<01:20,  6.10it/s]Corrupt JPEG data: 12658 extraneous bytes before marker 0xd2
+      20/20      3.54G      2.851       1.33      1.964       1036        640:  52%|█████▏    | 539/1027 [01:26<01:13,  6.60it/s]Corrupt JPEG data: 41 extraneous bytes before marker 0xd9
+      20/20      3.54G      2.851       1.33      1.964       1063        640:  53%|█████▎    | 542/1027 [01:27<01:13,  6.63it/s]Corrupt JPEG data: 2464 extraneous bytes before marker 0xd9
+      20/20      3.54G      2.853      1.331      1.966       1088        640:  55%|█████▌    | 566/1027 [01:30<01:11,  6.47it/s]Corrupt JPEG data: premature end of data segment
+      20/20      3.54G      2.851      1.332      1.966        961        640:  59%|█████▉    | 606/1027 [01:37<01:05,  6.41it/s]Corrupt JPEG data: premature end of data segment
+      20/20      3.54G      2.851      1.331      1.964       1089        640:  70%|███████   | 719/1027 [01:55<00:47,  6.51it/s]Corrupt JPEG data: premature end of data segment
+      20/20      3.54G      2.848      1.329      1.964       1056        640:  76%|███████▋  | 785/1027 [02:05<00:39,  6.07it/s]Corrupt JPEG data: premature end of data segment
+      20/20      3.54G      2.846      1.329      1.964       1346        640:  79%|███████▊  | 808/1027 [02:09<00:36,  6.00it/s]Corrupt JPEG data: 10773 extraneous bytes before marker 0xd9
+      20/20      3.54G      2.846      1.329      1.963       1084        640:  83%|████████▎ | 853/1027 [02:17<00:27,  6.42it/s]Corrupt JPEG data: 562 extraneous bytes before marker 0xd9
+      20/20      3.54G      2.849      1.329      1.964       1136        640:  88%|████████▊ | 903/1027 [02:24<00:19,  6.37it/s]Corrupt JPEG data: premature end of data segment
+      20/20      3.54G      2.849      1.329      1.964       1142        640:  88%|████████▊ | 906/1027 [02:25<00:19,  6.14it/s]Corrupt JPEG data: 96 extraneous bytes before marker 0xd9
+      20/20      3.54G       2.85      1.329      1.964       1159        640:  90%|████████▉ | 922/1027 [02:27<00:16,  6.31it/s]Corrupt JPEG data: premature end of data segment
+      20/20      3.54G      2.849      1.329      1.964        955        640:  97%|█████████▋| 1000/1027 [02:40<00:04,  6.67it/s]Corrupt JPEG data: premature end of data segment
+      20/20      3.54G      2.847      1.328      1.964        999        640: 100%|█████████▉| 1023/1027 [02:44<00:00,  6.72it/s]Corrupt JPEG data: premature end of data segment
+      20/20      3.54G      2.847      1.328      1.964       1149        640: 100%|██████████| 1027/1027 [02:44<00:00,  6.23it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  24%|██▍       | 9/37 [00:11<00:25,  1.11it/s]Corrupt JPEG data: 305 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  38%|███▊      | 14/37 [00:12<00:07,  2.89it/s]Corrupt JPEG data: 786 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  46%|████▌     | 17/37 [00:13<00:05,  3.55it/s]Corrupt JPEG data: 366 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 37/37 [00:17<00:00,  2.07it/s]
+                   all        588      90967      0.876      0.799      0.879      0.554
+Corrupt JPEG data: premature end of data segment
+
+20 epochs completed in 4.046 hours.
+Optimizer stripped from runs\detect\train\weights\last.pt, 5.7MB
+Optimizer stripped from runs\detect\train\weights\best.pt, 5.7MB
+
+Validating runs\detect\train\weights\best.pt...
+Ultralytics 8.3.89 🚀 Python-3.10.0 torch-2.6.0+cu126 CUDA:0 (NVIDIA GeForce RTX 4050 Laptop GPU, 6140MiB)
+YOLOv10n summary (fused): 125 layers, 2,694,806 parameters, 0 gradients, 8.2 GFLOPs
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  16%|█▌        | 6/37 [00:11<00:52,  1.69s/it]Corrupt JPEG data: 305 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  27%|██▋       | 10/37 [00:14<00:28,  1.07s/it]Corrupt JPEG data: 786 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  38%|███▊      | 14/37 [00:18<00:20,  1.12it/s]Corrupt JPEG data: 366 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  95%|█████████▍| 35/37 [00:35<00:01,  1.18it/s]Corrupt JPEG data: premature end of data segment
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 37/37 [00:37<00:00,  1.01s/it]
+                   all        588      90967      0.876      0.799      0.879      0.554
+Speed: 0.5ms preprocess, 5.0ms inference, 0.0ms loss, 0.2ms postprocess per image
+Results saved to runs\detect\train
+(venv) PS D:\Python\BTP\version1> yolo
+
+    Arguments received: ['yolo']. Ultralytics 'yolo' commands use the following syntax:
+
+        yolo TASK MODE ARGS
+
+        Where   TASK (optional) is one of frozenset({'segment', 'obb', 'detect', 'pose', 'classify'})
+                MODE (required) is one of frozenset({'train', 'benchmark', 'predict', 'val', 'export', 'track'})
+                ARGS (optional) are any number of custom 'arg=value' pairs like 'imgsz=320' that override defaults.
+                    See all ARGS at https://docs.ultralytics.com/usage/cfg or with 'yolo cfg'
+
+    1. Train a detection model for 10 epochs with an initial learning_rate of 0.01
+        yolo train data=coco8.yaml model=yolo11n.pt epochs=10 lr0=0.01
+
+    2. Predict a YouTube video using a pretrained segmentation model at image size 320:
+        yolo predict model=yolo11n-seg.pt source='https://youtu.be/LNwODJXcvt4' imgsz=320
+
+    3. Val a pretrained detection model at batch-size 1 and image size 640:
+        yolo val model=yolo11n.pt data=coco8.yaml batch=1 imgsz=640
+
+    4. Export a YOLO11n classification model to ONNX format at image size 224 by 128 (no TASK required)
+        yolo export model=yolo11n-cls.pt format=onnx imgsz=224,128
+
+    5. Ultralytics solutions usage
+        yolo solutions count or in ['crop', 'blur', 'workout', 'heatmap', 'isegment', 'visioneye', 'speed', 'queue', 'analytics', 'inference', 'trackzone'] source="path/to/video/file.mp4"
+
+    6. Run special commands:
+        yolo help
+        yolo checks
+        yolo version
+        yolo settings
+        yolo copy-cfg
+        yolo cfg
+        yolo solutions help
+
+    Docs: https://docs.ultralytics.com
+    Solutions: https://docs.ultralytics.com/solutions/
+    Community: https://community.ultralytics.com
+    GitHub: https://github.com/ultralytics/ultralytics
+
+(venv) PS D:\Python\BTP\version1> yolo val model=runs/detect/train/weights/best.pt data=configs/data.yaml split=test
+Ultralytics 8.3.89 🚀 Python-3.10.0 torch-2.6.0+cu126 CUDA:0 (NVIDIA GeForce RTX 4050 Laptop GPU, 6140MiB)
+YOLOv10n summary (fused): 125 layers, 2,694,806 parameters, 0 gradients, 8.2 GFLOPs
+val: Scanning D:\Python\BTP\SKU110K_fixed\labels\test... 2935 images, 0 backgrounds, 1 corrupt: 100%|██████████| 2936/2936 [00:02<00:00, 1210.11it/s]
+val: WARNING ⚠️ D:\Python\BTP\SKU110K_fixed\images\test\test_274.jpg: ignoring corrupt image/label: image file is truncated (14 bytes not processed)
+val: New cache created: D:\Python\BTP\SKU110K_fixed\labels\test.cache
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):   4%|▍         | 7/184 [00:10<03:33,  1.20s/it]Corrupt JPEG data: 935 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):   5%|▍         | 9/184 [00:12<02:53,  1.01it/s]Corrupt JPEG data: premature end of data segment
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):   9%|▉         | 17/184 [00:18<02:08,  1.30it/s]Corrupt JPEG data: 70 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  15%|█▍        | 27/184 [00:25<01:52,  1.40it/s]Corrupt JPEG data: 358 extraneous bytes before marker 0xd9
+Corrupt JPEG data: premature end of data segment
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  30%|██▉       | 55/184 [00:46<01:37,  1.32it/s]Corrupt JPEG data: premature end of data segment
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  54%|█████▍    | 99/184 [01:18<01:02,  1.35it/s]Corrupt JPEG data: 1514 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  61%|██████▏   | 113/184 [01:28<00:51,  1.38it/s]Corrupt JPEG data: 166 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  65%|██████▍   | 119/184 [01:32<00:45,  1.44it/s]Corrupt JPEG data: 327 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  67%|██████▋   | 124/184 [01:36<00:43,  1.39it/s]Corrupt JPEG data: premature end of data segment
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  68%|██████▊   | 125/184 [01:37<00:43,  1.37it/s]Corrupt JPEG data: 845 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  72%|███████▏  | 132/184 [01:42<00:40,  1.29it/s]Corrupt JPEG data: 241 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95):  82%|████████▏ | 150/184 [01:55<00:24,  1.39it/s]Corrupt JPEG data: 555 extraneous bytes before marker 0xd9
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 184/184 [02:21<00:00,  1.30it/s]
+                   all       2935     431418      0.881      0.811      0.894      0.564
+Speed: 0.3ms preprocess, 5.5ms inference, 0.0ms loss, 0.4ms postprocess per image
+Results saved to runs\detect\val
+💡 Learn more at https://docs.ultralytics.com/modes/val2025-04-10 22:15:35,428 | INFO | Training started.
+2025-04-10 22:16:12,069 | INFO | Training started.
+2025-04-10 23:22:21,890 | INFO | Training started.
+2025-04-10 23:24:08,154 | INFO | Training started.
+2025-04-11 00:02:01,859 | INFO | Training started.
+2025-04-11 00:02:17,304 | INFO | Training started.
