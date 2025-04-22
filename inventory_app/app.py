@@ -2,11 +2,13 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 import os
 from werkzeug.utils import secure_filename
+from utilities.detection_cropper import detect_and_crop
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///inventory.db'
 app.config['UPLOAD_FOLDER_CAMERAS'] = 'static/cameras'
 app.config['UPLOAD_FOLDER_THUMBNAILS'] = 'static/thumbnails'
+app.config['CROPS_FOLDER'] = 'static/crops'
 app.secret_key = 'your-secret-key'  # 🔐 Use a strong, random value in production
 db = SQLAlchemy(app)
 
@@ -46,6 +48,7 @@ def add_camera():
             db.session.add(new_camera)
             db.session.commit()
             return redirect(url_for('list_cameras'))
+        detect_and_crop("../yolo/runs/detect/train/weights/best.pt", filepath, app.config['CROPS_FOLDER']+"/"+camera_id)
     return render_template('camera_add.html')
 
 @app.route('/camera/<camera_id>')
@@ -92,6 +95,7 @@ def add_product():
         image = request.files['product_image']
         if product_name and image:
             filename = secure_filename(image.filename)
+            crop_folder = filename.split('.')[0]
             extension = filename.split('.')[-1]
             new_product = Product(product_name=product_name)
             db.session.add(new_product)
