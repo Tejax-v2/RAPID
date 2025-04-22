@@ -47,8 +47,8 @@ def add_camera():
             new_camera = Camera(camera_id=camera_id)
             db.session.add(new_camera)
             db.session.commit()
+            detect_and_crop("../yolo/runs/detect/train/weights/best.pt", filepath, app.config['CROPS_FOLDER']+"/"+camera_id)
             return redirect(url_for('list_cameras'))
-        detect_and_crop("../yolo/runs/detect/train/weights/best.pt", filepath, app.config['CROPS_FOLDER']+"/"+camera_id)
     return render_template('camera_add.html')
 
 @app.route('/camera/<camera_id>')
