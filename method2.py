@@ -9,26 +9,27 @@ import torchvision.transforms as transforms
 from torchvision import models
 import matplotlib.pyplot as plt
 from sklearn.manifold import TSNE
+from ultralytics import YOLO
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Using device: {device}")
 
 # Define the image file
-image_file = "photos/shelf9.jpg"
+image_file = "/DATA/tejas_2101cs78/datasets/SKU-110K/images/test_1.jpg"
 image = cv2.imread(image_file)
 
 
 # Load a pre-trained YOLOv8 model
-model = get_model(model_id="sku-110k/2", api_key="API_KEY")
+model = YOLO("yolo/runs/detect/train/weights/best.pt")  # Load your trained YOLOv8 model
 print(model)
 #model.to(device)  # Move the YOLO model to GPU
 
 
 # Run inference on the image
-results = model.infer(image)[0]
+results = model(image)[0]
 
 # Load the results into the supervision Detections API
-detections = sv.Detections.from_inference(results)
+detections = sv.Detections.from_ultralytics(results)
 
 # Define the Embedder network (Pre-trained CNN for feature extraction)
 embedder = models.resnet50(pretrained=True)

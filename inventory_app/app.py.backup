@@ -91,30 +91,19 @@ def list_products():
 @app.route('/product/add', methods=['GET', 'POST'])
 def add_product():
     if request.method == 'POST':
-        product_id = request.form['product_id']
         product_name = request.form['product_name']
         image = request.files['product_image']
-
-        if product_id and product_name and image:
-            # Check if the given product_id already exists
-            existing_product = Product.query.get(product_id)
-            if existing_product:
-                flash('Product ID already exists! Please use a different ID.', 'danger')
-                return redirect(url_for('add_product'))
-
+        if product_name and image:
             filename = secure_filename(image.filename)
+            crop_folder = filename.split('.')[0]
             extension = filename.split('.')[-1]
-            filename = str(product_id) + '.' + extension
-
-            new_product = Product(product_id=product_id, product_name=product_name)
+            new_product = Product(product_name=product_name)
             db.session.add(new_product)
             db.session.commit()
-
+            filename = str(new_product.product_id)+'.'+extension
             image.save(os.path.join(app.config['UPLOAD_FOLDER_THUMBNAILS'], filename))
-            flash('Product added successfully!', 'success')
             return redirect(url_for('list_products'))
     return render_template('product_add.html')
-
 
 @app.route('/product/update/<int:product_id>', methods=['GET', 'POST'])
 def update_product(product_id):

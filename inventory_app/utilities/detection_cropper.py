@@ -24,30 +24,12 @@ def process_detections(results, image, output_folder: str):
             crop = image[y1:y2, x1:x2]
             cv2.imwrite(os.path.join(output_folder, f'crop_{i}_{j}.jpg'), crop)
 
-def save_annotated_image(results, image_path: str, output_folder: str):
-    """Draw bounding boxes and save annotated image"""
-    image = cv2.imread(image_path)
-    
-    for result in results:
-        boxes = result.boxes
-        for box in boxes:
-            x1, y1, x2, y2 = map(int, box.xyxy[0].tolist())
-            conf = float(box.conf[0]) if box.conf is not None else 0
-            label = result.names[int(box.cls[0])] if hasattr(result, 'names') else 'Object'
-            cv2.rectangle(image, (x1, y1), (x2, y2), (0, 255, 0), 2)
-            cv2.putText(image, f"{label} {conf:.2f}", (x1, y1 - 10),
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
-
-    ensure_output_dir(output_folder)
-    annotated_path = os.path.join(output_folder, image_path.split('/')[-1]+'.jpg')
-    cv2.imwrite(annotated_path, image)
-
 def detect_and_crop(model_path: str, image_path: str, output_folder: str):
     """End-to-end detection and cropping pipeline"""
     model = load_model(model_path)
     results = run_detection(model, image_path)
     ensure_output_dir(output_folder)
     image = cv2.imread(image_path)
+    annotated_frame = results[0].plot()
+    cv2.imwrite('static/predictions/'+image_path.split('/')[-1], annotated_frame)
     process_detections(results, image, output_folder)
-    save_annotated_image(results, image_path, '../static/predictions')
-
